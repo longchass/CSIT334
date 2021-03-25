@@ -96,7 +96,7 @@
 <?php elseif ($str_language == 'en'): ?>
 
     <p class="text"><strong>The virtual host was set up successfully.</strong></p>
-    <p class="text">FSADFSDFSADFSDFWSDFSDFGSDGSAD WEBFWEIKJFN WSAKFNSADKJRFNSAKDNFSDKFNWSEKFNSN<sup><a href="#footnote_1">1</a></sup> should be replaced or deleted.</p>
+    <p class="text">Long DUmb Dumb<sup><a href="#footnote_1">1</a></sup> should be replaced or deleted.</p>
     <p class="text">
         Server name: <samp><?php echo $_SERVER['SERVER_NAME']; ?></samp><br />
         Document root: <samp><?php echo $_SERVER['DOCUMENT_ROOT']; ?></samp>
