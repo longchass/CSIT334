@@ -4,7 +4,7 @@
     
    // Check if the user is logged in, if not then redirect him to login page
    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-       header("location: index.php");
+       header("location: html/index.php");
        exit;
    }
    ?>
@@ -19,7 +19,8 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <script>
          $(function(){
-           $("#header").load("html/header.html");
+           $("#header").load("html/header2.html"); 
+         
          });
          		
       </script>
@@ -32,13 +33,7 @@
          width: 100%;
          height:100%;
          font-family: 'Open Sans', sans-serif;
-         background: #092756;
-         background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
-         background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-         background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-         background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-         background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
-         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+         background-image: url('images/bg1.png');
          }
          img
          {
@@ -54,5 +49,32 @@
    <body>
       <div id="header"></div>
       <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+         <!-- Indicators -->
+         <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+         </ul>
+         <!-- The slideshow -->
+         <div class="carousel-inner">
+            <div class="carousel-item active img-fluid">
+               <img src="images/slide1.png" alt="Los Angeles">
+            </div>
+            <div class="carousel-item img-fluid">
+               <img src="images/slide2.png" alt="Chicago">
+            </div>
+            <div class="carousel-item img-fluid">
+               <img src="images/slide4.png" alt="New York">
+            </div>
+         </div>
+         <!-- Left and right controls -->
+         <a class="carousel-control-prev" href="#demo" data-slide="prev">
+         <span class="carousel-control-prev-icon"></span>
+         </a>
+         <a class="carousel-control-next" href="#demo" data-slide="next">
+         <span class="carousel-control-next-icon"></span>
+         </a>
+      </div>
    </body>
 </html>

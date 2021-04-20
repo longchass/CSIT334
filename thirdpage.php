@@ -4,7 +4,7 @@
     
    // Check if the user is logged in, if not then redirect him to login page
    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-       header("location: index.php");
+       header("location: html/index.php");
        exit;
    }
    ?>
@@ -19,7 +19,8 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <script>
          $(function(){
-           $("#header").load("html/header.html");
+           $("#header").load("html/header3.html"); 
+         
          });
          		
       </script>
@@ -49,10 +50,18 @@
          width: 100%;
          height: 80%;
          }
+         #dashboard{
+         background-image:  url('images/bg3.jpg');
+         height: 450px;
+         background-size: 100% 100%;
+         }
       </style>
    </head>
    <body>
-      <div id="header"></div>
-      <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+      <div id="header" ></div>
+      <div id="dashboard">
+         <div class="row" >
+         </div>
+      </div>
    </body>
 </html>
