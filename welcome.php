@@ -9,8 +9,7 @@
    }
    ?>
 <!DOCTYPE html>
-<html lang="en">
-   <head>
+<html lang="en"><head>
       <meta charset="UTF-8">
       <title>Welcome</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,10 +48,85 @@
          width: 100%;
          height: 80%;
          }
+		 .btn{
+			 color: white;
+		 }
+		 .other-activities{
+			 background-color: cornflowerblue;
+		 }
+		 
       </style>
    </head>
    <body>
       <div id="header"></div>
       <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+	  
+	   <div class="dashboard">
+	  <h1 align='left' style="padding-left: 20px;">Dashboard</h1>
+	<div class="row">
+		<div class="col-md-4">
+			<h2>
+				Check-in History
+			</h2>			
+				<img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />			
+			<p>
+				<a class="btn" href="#">Read more »</a>
+			</p>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Enrol for vaccine
+			</h2>			
+				<img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />			
+			<p>
+				<a class="btn" href="#">View details »</a>
+			</p>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Vaccine info
+			</h2>			
+				<img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />			
+			<p>
+				<a class="btn" href="#">Donate »</a>
+			</p>
+		</div>		
+	</div>
+</div>
+	   
+	  
+	  <div class="other-activities">
+	  <h1 align='left' style="padding-left: 20px;">Other information</h1>
+	<div class="row">
+		<div class="col-md-4">
+			<h2>
+				COVID-19 News
+			</h2>			
+				<img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />			
+			<p>
+				<a class="btn" href="#">Read more »</a>
+			</p>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Contact government
+			</h2>			
+				<img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />			
+			<p>
+				<a class="btn" href="#">View details »</a>
+			</p>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Support our website
+			</h2>			
+				<img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />			
+			<p>
+				<a class="btn" href="#">Donate »</a>
+			</p>
+		</div>
+	</div>
+</div>
+	  
    </body>
 </html>
