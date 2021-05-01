@@ -11,46 +11,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <! --Header load function code, replace if you can get it to work -->
-        <nav class="navbar navbar-dark bg-dark justify-content-between navbar-expand-sm" style="background-color: #e3f2fd;">
-            <a class="navbar-brand">Purge Covid-19</a>
 
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active" id="Home">
-                    <a class="nav-link" href="welcome.php">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item" id="About">
-                    <a class="nav-link" href="secondpage.php">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="thirdpage.php">News</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Support</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="edit_profile.php">Edit Profile </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="btn btn-warning" href="edit_profile.php">
-                        Reset password
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-danger ml-3" href="logout.php">
-                        Sign Out
-                    </a>
-                </li>
-            </ul>
-        </nav>
         <meta charset="UTF-8" />
         <title>Welcome</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-
+      <script>
+         $(function(){
+           $("#header").load("html/header3.html"); 
+         
+         });
+         		
+      </script>
         <style>
             * {
                 -webkit-box-sizing: border-box;
@@ -103,6 +77,8 @@
         </style>
     </head>
     <body>
+	      <div id="header" ></div>
+
         <h1 class="my-5">
             Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.
         </h1>
