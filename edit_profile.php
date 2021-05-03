@@ -7,6 +7,9 @@
        header("location: index.php");
        exit;
    }
+	
+	// Include config file
+	require_once "config.php";
    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +34,6 @@
                 height: 100%;
                 font-family: "Open Sans", sans-serif;
                 background: #092756;
-            }
-            td {
-                width: 33.3%;
             }
         </style>
 		      <script>
@@ -83,5 +83,51 @@
                 </tr>
             </tbody>
         </table>
+		Test
+		<br />
+		<?php
+			// Attempt select query execution
+			$sql = "SELECT * FROM users2";
+			if($result = mysqli_query($link, $sql)){
+				if(mysqli_num_rows($result) > 0){
+					echo "<table>";
+						echo "<tr>";
+							echo "<th>id</th>";
+							echo "<th>username</th>";
+							echo "<th>user_type</th>";
+							echo "<th>fname</th>";
+							echo "<th>lname</th>";
+							echo "<th>org</th>";
+							echo "<th>email</th>";
+							echo "<th>address</th>";
+							echo "<th>created</th>";
+						echo "</tr>";
+					while($row = mysqli_fetch_array($result)){
+						echo "<tr>";
+							echo "<td>" . $row['user_id'] . "</td>";
+							echo "<td>" . $row['username'] . "</td>";
+							echo "<td>" . $row['user_type'] . "</td>";
+							echo "<td>" . $row['fname'] . "</td>";
+							echo "<td>" . $row['lname'] . "</td>";
+							echo "<td>" . $row['organisation_name'] . "</td>";
+							echo "<td>" . $row['email'] . "</td>";
+							echo "<td>" . $row['address'] . "</td>";
+							echo "<td>" . $row['created_at'] . "</td>";
+						echo "</tr>";
+					}
+					echo "</table>";
+					// Free result set
+					mysqli_free_result($result);
+				} else{
+					echo "No records matching the query were found.";
+				}
+			} else{
+				echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+			}
+
+			// Close connection
+			mysqli_close($link);
+		?>
+		
     </body>
 </html>

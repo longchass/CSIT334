@@ -55,4 +55,29 @@ CREATE TABLE check-Ins (
 	CONSTRAINT address_fk FOREIGN KEY (address) REFERENCES businesses (address), 		/*field has to exist in business table*/
 	CONSTRAINT business_name_fk2 FOREIGN KEY (business_name) REFERENCES businesses (business_name)		/*field has to exist in business table*/
 );
---decide how to do check-out time?
+#decide how to do check-out time?
+
+# ---================================Load Data into table ======================================================---
+# --=-=-=-=-=-=-=- user accounts -=-=-=-=-=--
+# Dummy user account for testing
+INSERT INTO users2(user_id, username, password, user_type, fname, lname, organisation_name, email, address, created_at)
+VALUES(NULL,'test', 'test', DEFAULT, 'John', 'Smith', DEFAULT, 'test@gmail.com', '10 Garb St', DEFAULT);
+
+#general public 
+INSERT INTO users2(user_id, username, password, user_type, fname, lname, organisation_name, email, address, created_at)
+VALUES(NULL,'general_public', 'general_public', DEFAULT, 'Jeff', 'Jones', DEFAULT, 'Jeff@gmail.com', '20 Blue St', DEFAULT);
+
+#buisness account
+INSERT INTO users2(user_id, username, password, user_type, fname, lname, organisation_name, email, address, created_at)
+VALUES(NULL,'business', 'business', 'business', 'Amy', 'Pond', DEFAULT, 'Amy@gmail.com', '30 Yellow St', DEFAULT);
+
+#health_staff
+INSERT INTO users2(user_id, username, password, user_type, fname, lname, organisation_name, email, address, created_at)
+VALUES(NULL,'health_staff', 'health_staff', 'health_staff', 'Dr.', 'Who', 'Hospital Org', 'Dr@gmail.com', '40 Purple St', DEFAULT);
+
+#organisation
+INSERT INTO users2(user_id, username, password, user_type, fname, lname, organisation_name, email, address, created_at)
+VALUES(NULL,'organisation', 'organisation', 'organisation', 'Rory', 'Williams', 'Roman Cor', 'rory@gmail.com', '50 Gold St', DEFAULT);
+
+
+
