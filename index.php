@@ -1,6 +1,5 @@
 <?php
-//Code adapted from https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
-// Initialize the session
+
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -62,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username;                          
                             
                             // Redirect user to welcome page
                             header("location: welcome.php");
