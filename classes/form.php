@@ -67,24 +67,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $last_name = trim($_POST["last_name"]);
     }
-   
-    // Validate email
-    if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter a email.";     
-    } elseif(strlen(trim($_POST["email"])) < 5){
-        $email_err = "email must have atleast 5 characters.";
-    } else{
-        $email = trim($_POST["email"]);
-    }
-	
-    // Validate address
-    if(empty(trim($_POST["address"]))){
-        $address_err = "Please enter a address.";     
-    } elseif(strlen(trim($_POST["address"])) < 5){
-        $address_err = "address must have atleast 5 characters.";
-    } else{
-        $address = trim($_POST["address"]);
-    }
 	
     // Validate password
     if(empty(trim($_POST["password"]))){
@@ -108,29 +90,61 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($first_name_err)  && empty($last_name_err) && empty($email_err) && empty($address_err)  ){
-        
-        // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
-            
-            // Set parameters
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: index.php");
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+        //Initialize 2 insert statements
+		$insertUsers = $insertTable = "";
+		
+		if($privs = "#S") {
+			// Prepare an insert statement
+			$insertTable = "INSERT INTO staff (username, password) VALUES (?, ?)";
+			
+			$insertUsers = "INSERT INTO users (username, privs) VALUES (?, ?)";
+		} else 
+			// Prepare an insert statement
+			$insertTable = "INSERT INTO person (username, password) VALUES (?, ?)";
+		
+			$insertUsers = "INSERT INTO users (username, privs) VALUES (?, ?)";
+		}
+			if($stmt = mysqli_prepare($link, $insertUsers)){
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_privs);
+				
+				// Set parameters
+				$param_username = $username;
+				$param_password = $privs; // Creates a password hash
+				
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt)){
+					// Redirect to login page
+					header("location: index.php");
+				} else{
+					echo "Oops! Something went wrong. Please try again later.";
+				}
 
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
+				// Close statement
+				mysqli_stmt_close($stmt);
+			}
+			
+			if($stmt = mysqli_prepare($link, $insertTable)){
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+				
+				// Set parameters
+				$param_username = $username;
+				$param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+				
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt)){
+					// Redirect to login page
+					header("location: index.php");
+				} else{
+					echo "Oops! Something went wrong. Please try again later.";
+				}
+
+				// Close statement
+				mysqli_stmt_close($stmt);
+			}
+			
+		}
     }
     
     // Close connection
