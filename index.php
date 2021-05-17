@@ -34,7 +34,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
+        // Prepare a select users statement
+		$priv = "SELECT ID, username, privs FROM users WHERE username = ?";
+		
+		if($stmt = mysqli_prepare($link, $priv) {
+			// Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+			
+			// Set parameters
+            $param_username = $username;
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
+                mysqli_stmt_store_result($stmt);
+                
+                // Check if username exists, if yes then verify password
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $id, $username, $privs);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if($privs == "#A") {
+							$sql = "SELECT ID, username, privs FROM admin WHERE username = ?";
+						}
+                    }
+                } else{
+                    // Username doesn't exist, display a generic error message
+                    $login_err = "Invalid username or password.";
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+		}
+    }
+    
+	function varify_user($sql) {
+		// Prepare a select statement
         $sql = "SELECT id, username, password FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
@@ -81,8 +116,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
-    }
-    
+	}
+	
     // Close connection
     mysqli_close($link);
 }
