@@ -67,6 +67,7 @@ CREATE TABLE ADMIN (
 );
 
 INSERT INTO ADMIN VALUES(0, '#A','baolam', 'admin', 'bao', 'lam', 'Australia Health Department')
+INSERT INTO USERS VALUES(0,'baolam','#A')
 
 #table for check-in logs
 CREATE TABLE CHECKIN (
