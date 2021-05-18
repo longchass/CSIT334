@@ -2,7 +2,7 @@
 
 session_start();
  	
-	function verify_password($sql, $param_username,$password,$id,$link) {
+	function verify_password($sql, $param_username,$password,$link) {
 	$hashed_password=" ";
 		if($stmt2 = mysqli_prepare($link, $sql)){
 
@@ -21,7 +21,7 @@ session_start();
 				if(mysqli_stmt_num_rows($stmt2) == 1){                    
 				
 					// Bind result variables
-					mysqli_stmt_bind_result($stmt2, $id, $param_username, $hashed_password);
+					mysqli_stmt_bind_result($stmt2, $param_username, $hashed_password);
 
 					if(mysqli_stmt_fetch($stmt2)){
 
@@ -32,7 +32,6 @@ session_start();
 								
 							// Store data in session variables
 							$_SESSION["loggedin"] = true;
-							$_SESSION["id"] = $id;
 							$_SESSION["username"] = $param_username;                          
 							// Redirect user to welcome page
 							header("location: welcome.php");
@@ -85,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-		$privilege = "SELECT id, username, privs FROM USERS WHERE username = ?";
+		$privilege = "SELECT username, privs FROM USERS WHERE username = ?";
 		if($stmt = mysqli_prepare($link, $privilege)) {
 			// Bind variables to the prepared statement as parameters
 			$param_username = $username;
@@ -102,21 +101,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				// Check if username exists, if yes then find their privilege
 				if(mysqli_stmt_num_rows($stmt) == 1){  
 				
-					mysqli_stmt_bind_result($stmt, $id, $username, $privs);
+					mysqli_stmt_bind_result($stmt, $username, $privs);
 					if(mysqli_stmt_fetch($stmt)){
 						if($privs == '#P') {
-							$sql = "SELECT id, username, password FROM person WHERE username = ?";
+							$sql = "SELECT username, password FROM person WHERE username = ?";
 						} elseif ($privs == '#S') {
-							$sql = "SELECT id, username, password FROM staff WHERE username = ?";
+							$sql = "SELECT username, password FROM staff WHERE username = ?";
 						}
 						elseif($privs == '#A')
 						{
-							$sql = "SELECT id, username, password FROM admin WHERE username = ?";
+							$sql = "SELECT username, password FROM admin WHERE username = ?";
 						}
 
 					}
 
-					verify_password($sql,$param_username,$password,$id,$link);
+					verify_password($sql,$param_username,$password,$link);
 
 				}
 				else
