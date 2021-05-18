@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$insertTable = "INSERT INTO staff (username, password) VALUES (?, ?)";
 			
 			$insertUsers = "INSERT INTO users (username, privs) VALUES (?, ?)";
-		} else 
+		} else {
 			// Prepare an insert statement
 			$insertTable = "INSERT INTO person (username, password) VALUES (?, ?)";
 		
@@ -106,8 +106,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		}
 			if($stmt = mysqli_prepare($link, $insertUsers)){
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_privs);
-				
+				mysqli_stmt_bind_param($stmt, "ss", $username, $privs);
+								echo "<script type='text/javascript'>alert('wrong username or password');</script>";
+
 				// Set parameters
 				$param_username = $username;
 				$param_password = $privs; // Creates a password hash
@@ -126,11 +127,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			
 			if($stmt = mysqli_prepare($link, $insertTable)){
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+				mysqli_stmt_bind_param($stmt, "ss", $username, $password);
 				
 				// Set parameters
-				$param_username = $username;
-				$param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+				//$param_username = $username;
+				//$param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
@@ -145,6 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			}
 			
 		}
+}
     // Close connection
     mysqli_close($link);
 
