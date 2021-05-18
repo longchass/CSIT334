@@ -43,7 +43,7 @@ session_start();
 					}
 				} else{
 					// Username doesn't exist, display a generic error message
-					$login_err = "Invalid username or password.";
+					echo "<script type='text/javascript'>alert('invalid username or password');</script>";
 				}
 			} else{
 				echo "Oops! Something went wrong. Please try again later.";
@@ -119,8 +119,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					verify_password($sql,$param_username,$password,$id,$link);
 
 				}
+				else
+				{
+					echo "<script type='text/javascript'>alert('wrong username or password');</script>";
+				}
+
 			} else{
-				echo "Oops! Username does not exist. Please try again.";
+				echo "<script type='text/javascript'>alert('wrong username or password');</script>";
 			}
 			mysqli_stmt_close($stmt);
 		}
@@ -129,7 +134,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     mysqli_close($link);
-	mysqli_close($link2);
 }
 ?>
 <!DOCTYPE html>
@@ -223,4 +227,3 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
     </div>
 </body>
 </html>
-
