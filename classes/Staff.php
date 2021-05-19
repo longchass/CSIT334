@@ -16,7 +16,7 @@ class Staff {
   }
   function vaccinated($username, $name, $vac_date)
   {
-	  vaccine_cert Certificate = new vaccine_cert($username, $name, $vac_date);
+	  $vaccine_cert = new vaccine_cert($username, $name, $vac_date);
 	  echo "User $username has been vaccinated on $vac_date.";
   }
   function set_name($fname, $lname)
