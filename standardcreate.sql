@@ -1,61 +1,48 @@
 CREATE TABLE USERS (
-	ID		INT(8)		NOT NULL AUTO_INCREMENT,
 	username	VARCHAR(50)		NOT NULL UNIQUE,
 	privs	CHAR(2)		NOT NULL,
 	
-	CONSTRAINT USER_PKEY PRIMARY KEY (ID, username)
+	CONSTRAINT USER_PKEY PRIMARY KEY (username)
 );
 #user account table
 CREATE TABLE person (
-	ID		INT(8)		NOT NULL AUTO_INCREMENT,
 	username	VARCHAR(50)		NOT NULL UNIQUE,
     password	VARCHAR(50) NOT NULL,
 	fname VARCHAR(25) NOT NULL, 		
-	lname VARCHAR(25) NOT NULL, 		
-	email VARCHAR(150) NOT NULL,
-	phone CHAR(10) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (ID, username), 
-	FOREIGN KEY (ID, username) REFERENCES USERS(ID, username)
+	lname VARCHAR(25) NOT NULL,
+	PRIMARY KEY (username), 
+	FOREIGN KEY (username) REFERENCES USERS(username)
 );
 
 CREATE TABLE business (
-	ID		INT(8)		NOT NULL AUTO_INCREMENT,
 	username	VARCHAR(50)		NOT NULL UNIQUE,
     name	VARCHAR(30)	NOT NULL,
 	password	VARCHAR(50) NOT NULL,
-	email	VARCHAR(50)	NOT NULL,
 	address	VARCHAR(150)	NOT NULL,
-	phone	CHAR(10)	NOT NULL,
-	PRIMARY KEY (ID, username), 
-	FOREIGN KEY (ID, username) REFERENCES USERS(ID, username)
+	PRIMARY KEY (username), 
+	FOREIGN KEY (username) REFERENCES USERS(username)
 );
 
 #table for all vaccine certificate
 CREATE TABLE VACCINE_CERT (
-    ID			INT(8) 	NOT NULL,		/*unique user ID*/
-	P_ID		INT(8)		NOT NULL,
+	username	VARCHAR(50)		NOT NULL,
 	name 		VARCHAR(50) NOT NULL,		/*the user vaccinated*/
     vac_date 	DATE	 NOT NULL,			/*date/time user vaccinated - change to just date?*/
 	
-	CONSTRAINT PERSON_FKEY FOREIGN KEY (P_ID) REFERENCES person (ID)
+	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username)
 );
 
 #table for admin health staff
 CREATE TABLE STAFF (
-	ID		INT(8)		NOT NULL,		/*unique user ID*/
-	privs	CHAR(2)		NOT NULL,
 	username	VARCHAR(50)	NOT NULL UNIQUE,
     password	VARCHAR(50) NOT NULL,
 	fname	VARCHAR(25) NOT NULL,
 	lname	VARCHAR(25) NOT NULL,
-	department	VARCHAR(40)		NOT NULL,
 	
-	CONSTRAINT STAFF_FKEY FOREIGN KEY (ID, username) REFERENCES USERS(ID, username)
+	CONSTRAINT STAFF_FKEY FOREIGN KEY (username) REFERENCES USERS(username)
 );
 
 CREATE TABLE ADMIN (
-	ID		INT(8)		NOT NULL,		/*unique admin ID for government*/
 	privs	CHAR(2)		NOT NULL,
 	username	VARCHAR(50)	NOT NULL UNIQUE,
     password	VARCHAR(50) NOT NULL,
@@ -63,24 +50,26 @@ CREATE TABLE ADMIN (
 	lname	VARCHAR(25) NOT NULL,
 	department	VARCHAR(40)		NOT NULL,
 	
-	CONSTRAINT ADMIN_PKEY PRIMARY KEY (ID)
+	CONSTRAINT ADMIN_PKEY PRIMARY KEY (username)
 );
-
-INSERT INTO ADMIN VALUES(0, '#A','baolam', 'admin', 'bao', 'lam', 'Australia Health Department')
-INSERT INTO USERS VALUES(0,'baolam','#A')
+INSERT INTO USERS VALUES('baolam', '#A');
+INSERT INTO ADMIN VALUES('#A','baolam', 'admin', 'bao', 'lam', 'Australia Health Department');
 
 #table for check-in logs
 CREATE TABLE CHECKIN (
-	ID		INT(12)	NOT NULL AUTO_INCREMENT,		/*unique ID*/
-	P_ID	INT(8)		NOT NULL,		/*Personal ID*/
+	p_username	VARCHAR(50)		NOT NULL,		/*Personal ID*/
     name	VARCHAR(50) NOT NULL,		
-	B_ID	INT(8)		NOT NULL,		/*Business ID*/
+	b_username	VARCHAR(50)		NOT NULL,		/*Business ID*/
 	address VARCHAR(50) NOT NULL,	
 	check_in_time	DATETIME DEFAULT CURRENT_TIMESTAMP,	/*Current time used to sign in*/
 	check_out_time	DATETIME,							/*Time signed out*/
 	
-	CONSTRAINT CHECKIN_PKEY PRIMARY KEY(ID),
-	CONSTRAINT P_FK FOREIGN KEY (P_ID) REFERENCES person (ID), 		/*field has to exist in person table*/
-	CONSTRAINT B_FK FOREIGN KEY (B_ID) REFERENCES business (ID)		/*field has to exist in business table*/
+	CONSTRAINT P_FK FOREIGN KEY (p_username) REFERENCES person (username), 		/*field has to exist in person table*/
+	CONSTRAINT B_FK FOREIGN KEY (b_username) REFERENCES business (username)		/*field has to exist in business table*/
 );
 
+INSERT INTO USERS VALUES('staff1', '#S');
+INSERT INTO STAFF VALUES('#S','staff', 'password', 'fname', 'lname');
+
+INSERT INTO USERS VALUES('person1', '#P');
+INSERT INTO PERSON VALUES('person1', 'password', 'fname', 'lname');
