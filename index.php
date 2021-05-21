@@ -119,17 +119,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					verify_password($sql,$param_username,$password,$link);
 					$_SESSION["privs"] = $privs;
 
-					//Redirect user to corresponding welcome page
-					printf("You have logged in");                  
-					if($privs == "#S") {
-						header("location: welcomestaff.php");
-					} elseif($privs == "#P") {
-						header("location: welcome.php");
-					} elseif($privs == "#A") {
-						header("location: welcomeadmin.php");
-					} elseif($privs == "#B") {
-						header("location: welcomebusiness.php");
-					}
+					//Redirect user to welcome page
+					header("location: welcome.php");
 				}
 				else
 				{
