@@ -43,7 +43,6 @@ CREATE TABLE STAFF (
 );
 
 CREATE TABLE ADMIN (
-	privs	CHAR(2)		NOT NULL,
 	username	VARCHAR(50)	NOT NULL UNIQUE,
     password	VARCHAR(50) NOT NULL,
 	fname	VARCHAR(25) NOT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE ADMIN (
 	CONSTRAINT ADMIN_PKEY PRIMARY KEY (username)
 );
 INSERT INTO USERS VALUES('baolam', '#A');
-INSERT INTO ADMIN VALUES('#A','baolam', 'admin', 'bao', 'lam', 'Australia Health Department');
+INSERT INTO ADMIN VALUES('baolam', 'admin', 'bao', 'lam', 'Australia Health Department');
 
 #table for check-in logs
 CREATE TABLE CHECKIN (
