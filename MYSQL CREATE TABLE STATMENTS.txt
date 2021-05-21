@@ -37,22 +37,24 @@ CREATE TABLE vaccinated_people (
 
 #table for businesses & health organisations as they are basically the same
 CREATE TABLE businesses (
-    business_name VARCHAR(600) NOT NULL,		
-	address VARCHAR(600) NOT NULL,
-	PRIMARY KEY( business_name, address)
+    business_name VARCHAR(500) NOT NULL,		
+	address VARCHAR(500) NOT NULL,
+	PRIMARY KEY(business_name, address)
 );
 
+INSERT INTO businesses VALUES('Chaitime','Outside coles st, NSW, 2500')
 
 
-#table for check-in logs
-CREATE TABLE check-Ins (
-	user_id INT NOT NULL PRIMARY KEY,		/*unique user ID*/
-    business_name VARCHAR(600) NOT NULL PRIMARY KEY,		
-	address VARCHAR(600) NOT NULL,	
+#table for check_in logs
+CREATE TABLE check_ins (
+	user_id INT NOT NULL,		/*unique user ID*/
+    business_name VARCHAR(500) NOT NULL,		/*maybe make this a secondary key or candidte key???*/
+	address VARCHAR(500) NOT NULL,	
 	check_in_time DATETIME DEFAULT CURRENT_TIMESTAMP,	/*Current time used to sign in*/
 	check_out_time DATETIME,							/*Time signed out*/
-	PRIMARY KEY( business_name, address),
-	CONSTRAINT address_fk FOREIGN KEY (address) REFERENCES businesses (address), 		/*field has to exist in business table*/
-	CONSTRAINT business_name_fk2 FOREIGN KEY (business_name) REFERENCES businesses (business_name)		/*field has to exist in business table*/
+	PRIMARY KEY(business_name, address),
+	CONSTRAINT address_fk FOREIGN KEY (address) REFERENCES businesses (address) ON DELETE CASCADE ON UPDATE CASCADE, 		/*field has to exist in business table*/
+	CONSTRAINT business_name_fk2 FOREIGN KEY (business_name) REFERENCES businesses (business_name) ON DELETE CASCADE ON UPDATE CASCADE		/*field has to exist in business table*/
 );
+/*May need to change from CASCADE TO NO ACTION OR OTHER METHOD */
 --decide how to do check-out time?
