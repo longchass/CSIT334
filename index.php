@@ -106,10 +106,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							$sql = "SELECT username, password FROM person WHERE username = ?";
 						} elseif ($privs == '#S') {
 							$sql = "SELECT username, password FROM staff WHERE username = ?";
-						}
-						elseif($privs == '#A')
+						} elseif($privs == '#A')
 						{
 							$sql = "SELECT username, password FROM admin WHERE username = ?";
+						} elseif($privs == '#B')
+						{
+							$sql = "SELECT username, password FROM business WHERE username = ?";
 						}
 
 					}
