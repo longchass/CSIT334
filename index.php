@@ -117,6 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					}
 
 					verify_password($sql,$param_username,$password,$link);
+					$_SESSION["privs"] = $privs;
 
 					//Redirect user to corresponding welcome page
 					printf("You have logged in");                  
