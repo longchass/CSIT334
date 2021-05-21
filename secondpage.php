@@ -1,6 +1,6 @@
 <?php
-require 'classes/sessioncheck.php'
-
+require 'classes/sessioncheck.php';
+	
    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +11,7 @@ require 'classes/sessioncheck.php'
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <script>
-         $(function(){
-           $("#header").load("html/PersonHeader.html"); 
-         
-         });
-         		
-      </script>
+	  
       <style>
          * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
          html { width: 100%; height:100%; overflow:hidden; }
