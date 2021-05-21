@@ -10,7 +10,7 @@ CREATE TABLE person (
     password	VARCHAR(50) NOT NULL,
 	fname VARCHAR(25) NOT NULL, 		
 	lname VARCHAR(25) NOT NULL,
-	PRIMARY KEY (username), 
+
 	FOREIGN KEY (username) REFERENCES USERS(username)
 );
 
