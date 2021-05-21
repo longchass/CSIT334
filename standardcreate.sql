@@ -16,8 +16,8 @@ CREATE TABLE person (
 
 CREATE TABLE business (
 	username	VARCHAR(50)		NOT NULL UNIQUE,
-    name	VARCHAR(30)	NOT NULL,
 	password	VARCHAR(50) NOT NULL,
+    bname	VARCHAR(30)	NOT NULL,
 	address	VARCHAR(150)	NOT NULL,
 
 	FOREIGN KEY (username) REFERENCES USERS(username)
