@@ -32,9 +32,7 @@ session_start();
 								
 							// Store data in session variables
 							$_SESSION["loggedin"] = true;
-							$_SESSION["username"] = $param_username;                          
-							// Redirect user to welcome page
-							header("location: welcome.php");
+							$_SESSION["username"] = $param_username;
 						} else{
 							// Password is not valid, display a generic error message
 							$login_err = "Invalid username or password.";
@@ -103,6 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				
 					mysqli_stmt_bind_result($stmt, $username, $privs);
 					if(mysqli_stmt_fetch($stmt)){
+						//Check user privilege to retrieve data from database
 						if($privs == '#P') {
 							$sql = "SELECT username, password FROM person WHERE username = ?";
 						} elseif ($privs == '#S') {
@@ -117,6 +116,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 					verify_password($sql,$param_username,$password,$link);
 
+					//Redirect user to corresponding welcome page
+					printf("You have logged in");                  
+					if($privs == "#S") {
+						header("location: welcomestaff.php");
+					} elseif($privs == "#P") {
+						header("location: welcome.php");
+					} elseif($privs == "#A") {
+						header("location: welcomeadmin.php");
+					} elseif($privs == "#B") {
+						header("location: welcomebusiness.php");
+					}
 				}
 				else
 				{
