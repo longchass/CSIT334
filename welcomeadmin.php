@@ -74,7 +74,7 @@ require 'classes/sessioncheck.php'
 	      <div id="header" ></div>
 
         <h1 class="my-5">
-            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.
+            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome.
         </h1>
         <h1 align="left" style="padding-left: 30px;">DASHBOARD</h1>
         <table width="90%" border="1" align="center">
