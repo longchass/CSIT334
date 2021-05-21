@@ -19,7 +19,7 @@ CREATE TABLE business (
     name	VARCHAR(30)	NOT NULL,
 	password	VARCHAR(50) NOT NULL,
 	address	VARCHAR(150)	NOT NULL,
-	PRIMARY KEY (username), 
+
 	FOREIGN KEY (username) REFERENCES USERS(username)
 );
 
@@ -69,7 +69,7 @@ CREATE TABLE CHECKIN (
 );
 
 INSERT INTO USERS VALUES('staff1', '#S');
-INSERT INTO STAFF VALUES('#S','staff', 'password', 'fname', 'lname');
+INSERT INTO STAFF VALUES('staff1', 'password', 'fname', 'lname');
 
 INSERT INTO USERS VALUES('person1', '#P');
 INSERT INTO PERSON VALUES('person1', 'password', 'fname', 'lname');
