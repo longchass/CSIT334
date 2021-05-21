@@ -13,7 +13,7 @@ require 'classes/sessioncheck.php'
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <script>
          $(function(){
-           $("#header").load("html/header3.html"); 
+           $("#header").load("html/PersonHeader.html"); 
          
          });
          		
