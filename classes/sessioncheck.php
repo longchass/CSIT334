@@ -7,4 +7,14 @@
        header("location: {$parent_dir}index.php");
        exit;
    }
+   //Display navigation bar according to the group of user
+	if($_SESSION["privs"] == "#P") {
+		include("html/PersonHeader.html");
+	} elseif($_SESSION["privs"] == "#S") {
+		include("html/StaffHeader.html");
+	} elseif($_SESSION["privs"] == "#A") {
+		include("html/AdminHeader.html");
+	} elseif($_SESSION["privs"] == "#B") {
+		include("html/BusinessHeader.html");
+	}
    ?>
