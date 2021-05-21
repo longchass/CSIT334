@@ -42,11 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 	
 	//Check if user is a staff
-	if(isset($_POST['staff'])) {
-		$privs = "#S";
-	} else {
-		$privs = "#P";
-	}
+
 
     // Validate first name
     if(empty(trim($_POST["first_name"]))){
@@ -84,24 +80,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "Password did not match.";
         }
     }
- 
+
  
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($first_name_err)  && empty($last_name_err) && empty($email_err) && empty($address_err)  ){
         //Initialize 2 insert statements
+		if(isset($_POST['staff'])) {
+		$privs = "#S";
+		} else {
+		$privs = "#P";
+		}
 		$insertUsers = $insertTable = "";
 		$username = trim($_POST["username"]);
-							echo "<script type='text/javascript'>alert('$username');</script>";
 
-		if($privs = "#S") {
+		if($privs == "#S") {
 			// Prepare an insert statement
 			$insertTable = "INSERT INTO staff (username, password, fname, lname) VALUES (?, ?, ?, ?)";
-			
+							echo "<script type='text/javascript'>alert('a');</script>";
+
 			$insertUsers = "INSERT INTO users (username, privs) VALUES (?, ?)";
 		} else {
 			// Prepare an insert statement
 			$insertTable = "INSERT INTO person (username, password, fname, lname) VALUES (?, ?, ?, ?)";
-		
+				echo "<script type='text/javascript'>alert('b');</script>";
+
 			$insertUsers = "INSERT INTO users (username, privs) VALUES (?, ?)";
 		}
 			if($stmt = mysqli_prepare($link, $insertUsers)){
@@ -117,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			
 			if($stmt2 = mysqli_prepare($link, $insertTable)){
 				// Set parameters
-				$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
 				mysqli_stmt_bind_param($stmt2, "ssss", $username, $password, $first_name, $last_name);
@@ -133,6 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 				// Close statement
 				mysqli_stmt_close($stmt2);
+				mysqli_stmt_close($stmt);
 			}
 			
 		}
