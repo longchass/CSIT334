@@ -69,6 +69,7 @@ require 'classes/sessioncheck.php'
                 background-color: cornflowerblue;
             }
         </style>
+
     </head>
     <body>
 	      <div id="header" ></div>
