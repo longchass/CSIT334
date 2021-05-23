@@ -9,24 +9,7 @@ function runPushNotification(inText) {
     });
 }
 
-//sends an email to all subscribers?
-//NOT WORKING AT THE MOMENT, DO NOT USE
-/*
-function runEmailNotification(inText, inSubject) {
-    $.ajax({
-        type: 'POST',
-        url: 'scripts/php_scripts/email_notification.php',
-        data: {
-            text: inText, subject: inSubject
-        }
-    });
-}
-*/
-
-
-
-
-/* -=-=-= To use -=-=-=-
+/* -=-=-= To use runPushNotification()-=-=-=-
 
 1. Have this code in the header for every page you want to display a notification AND the first page the user will visit to make them subscribe
 <script>
@@ -44,3 +27,15 @@ function runEmailNotification(inText, inSubject) {
     <button onclick="runPushNotification('Test notification is working correctly')">Test notification</button>
 
 */
+
+
+//sends an email to a SINGLE ADDRESS based on address given
+function runEmailNotification(inText) {
+    $.ajax({
+        type: 'POST',
+        url: 'scripts/php_scripts/email_notification.php',
+        data: {
+            email: inText
+        }
+    });
+}
