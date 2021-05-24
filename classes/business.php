@@ -5,7 +5,12 @@ class Business
     protected $username;
     protected $name;
     protected $address;
-
+	// Constructor
+    public function __construct(string $u, string $n, string $a ) {
+        $this->username = $u;
+        $this->name     = $n;
+		$this->address  = $a;
+    }
     // Methods
     function set_name($name)
     {

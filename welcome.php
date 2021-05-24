@@ -1,6 +1,5 @@
 <?php
 require 'classes/sessioncheck.php'
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
