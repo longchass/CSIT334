@@ -1,5 +1,6 @@
 <?php
 	require 'config.php';
+	require 'classes/Person.php';
    // Initialize the session
    session_start();
    // Check if the user is logged in, if not then redirect him to login page
@@ -10,38 +11,7 @@
    // Prepare a select statement
 	$info = "SELECT username, password, fname, lname FROM person WHERE username = ?";
 	$username = $password = $fname = $lname = "";
-	if($stmt = mysqli_prepare($link, $info)) {
-			// Bind variables to the prepared statement as parameters
-			//$param_username = $username;
-
-			mysqli_stmt_bind_param($stmt, "s", $_SESSION['username']);
-			
-			// Set parameters
-			
-			// Attempt to execute the prepared statement
-		if(mysqli_stmt_execute($stmt)){
-			// Store result
-			mysqli_stmt_store_result($stmt);
-				
-			// Check if username exists, if yes then find their privilege
-			if(mysqli_stmt_num_rows($stmt) == 1){  
-				
-				mysqli_stmt_bind_result($stmt, $username, $password, $fname, $lname);
-				if(mysqli_stmt_fetch($stmt)){
-				}
-				else
-				{
-					echo "<script type='text/javascript'>alert('No result found');</script>";
-				}
-
-			} else{
-				echo "<script type='text/javascript'>alert('Execution error');</script>";
-			}
-			mysqli_stmt_close($stmt);
-		}
-	// Close connection
-	mysqli_close($link);
-	}
+	$Person = new Person($_SESSION[username], $_SESSION[fname], $_SESSION[lname]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,17 +58,17 @@
             <tbody>
                 <tr width="33.3%">
                     <td>Username</td>
-                    <td><?php echo htmlspecialchars($_SESSION["username"]); ?></td>
+                    <td><?php echo htmlspecialchars($Person -> get_username()); ?></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>First name</td>
-                    <td><?php echo htmlspecialchars($fname); ?></td>
+                    <td><?php echo htmlspecialchars($Person -> get_fname()); ?></td>
                     <td>Change</td>
                 </tr>
                 <tr>
                     <td>Last Name</td>
-                    <td><?php echo htmlspecialchars($lname); ?></td>
+                    <td><?php echo htmlspecialchars($Person -> get_lname()); ?></td>
                     <td>Edit</td>
                 </tr>
             </tbody>

@@ -1,7 +1,62 @@
 <?php
 
 session_start();
- 	
+ 
+	function person_session_info($link) 
+	{
+		$username = $fname = $lname = " ";
+		
+		$sql = "SELECT username, fname, lname FROM person WHERE username = ?";
+		if($stmt3 = mysqli_prepare($link, $sql)){
+					mysqli_stmt_bind_param($stmt3, "s", $_SESSION["username"]);
+					mysqli_stmt_execute($stmt3);
+					mysqli_stmt_store_result($stmt3);
+					mysqli_stmt_bind_result($stmt3, $username, $fname, $lname);
+					mysqli_stmt_fetch($stmt3);
+					$_SESSION["username"] = $username;
+					$_SESSION["fname"]    = $fname;
+					$_SESSION["lname"]    = $lname;
+					
+		}
+	}
+	
+	function staff_session_info($link)
+	{
+		$username = $fname = $lname = " ";
+		
+		$sql = "SELECT username, fname, lname FROM staff WHERE username = ?";
+		if($stmt3 = mysqli_prepare($link, $sql)){
+					mysqli_stmt_bind_param($stmt3, "s", $_SESSION["username"]);
+					mysqli_stmt_execute($stmt3);
+					mysqli_stmt_store_result($stmt3);
+					mysqli_stmt_bind_result($stmt3, $username, $fname, $lname);
+					mysqli_stmt_fetch($stmt3);
+					$_SESSION["username"] = $username;
+					$_SESSION["fname"]    = $fname;
+					$_SESSION["lname"]    = $lname;
+		}
+	}
+	function business_session_info($link)
+	{
+		$username = $bname = $address = " ";
+		
+		$sql = "SELECT username, bname, address FROM business WHERE username = ?";
+		if($stmt3 = mysqli_prepare($link, $sql)){
+					mysqli_stmt_bind_param($stmt3, "s", $_SESSION["username"]);
+					mysqli_stmt_execute($stmt3);
+					mysqli_stmt_store_result($stmt3);
+					mysqli_stmt_bind_result($stmt3, $username, $bname, $address);
+					mysqli_stmt_fetch($stmt3);
+					$_SESSION["username"]   = $username;
+					$_SESSION["bname"]      = $bname;
+					$_SESSION["address"]    = $address;
+		}
+
+
+	}
+		
+ 
+ 
 	function verify_password($sql, $param_username,$password,$link) {
 	$hashed_password=" ";
 		if($stmt2 = mysqli_prepare($link, $sql)){
@@ -36,6 +91,7 @@ session_start();
 						} else{
 							// Password is not valid, display a generic error message
 							$login_err = "Invalid username or password.";
+
 						}
 					}
 				} else{
@@ -118,7 +174,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 					verify_password($sql,$param_username,$password,$link);
 					$_SESSION["privs"] = $privs;
-
+					if($privs == '#P') {
+							person_session_info($link);
+						} elseif ($privs == '#S') {
+							staff_session_info($link);
+						} elseif($privs == '#B')
+						{
+							business_session_info($link);
+						}
 					//Redirect user to welcome page
 					header("location: welcome.php");
 				}
