@@ -10,6 +10,7 @@ CREATE TABLE person (
     password	VARCHAR(50) NOT NULL,
 	fname VARCHAR(25) NOT NULL, 		
 	lname VARCHAR(25) NOT NULL,
+	infected	BOOLEAN	DEFAULT FALSE,
 
 	FOREIGN KEY (username) REFERENCES USERS(username)
 );
@@ -38,6 +39,7 @@ CREATE TABLE STAFF (
     password	VARCHAR(50) NOT NULL,
 	fname	VARCHAR(25) NOT NULL,
 	lname	VARCHAR(25) NOT NULL,
+	infected BOOLEAN	DEFAULT FALSE,
 	
 	CONSTRAINT STAFF_FKEY FOREIGN KEY (username) REFERENCES USERS(username)
 );
@@ -51,8 +53,6 @@ CREATE TABLE ADMIN (
 	
 	CONSTRAINT ADMIN_PKEY PRIMARY KEY (username)
 );
-INSERT INTO USERS VALUES('baolam', '#A');
-INSERT INTO ADMIN VALUES('baolam', 'admin', 'bao', 'lam', 'Australia Health Department');
 
 #table for check-in logs
 CREATE TABLE CHECKIN (
@@ -60,15 +60,11 @@ CREATE TABLE CHECKIN (
     name	VARCHAR(50) NOT NULL,		
 	b_username	VARCHAR(50)		NOT NULL,		/*Business ID*/
 	address VARCHAR(50) NOT NULL,	
-	check_in_time	DATETIME DEFAULT CURRENT_TIMESTAMP,	/*Current time used to sign in*/
-	check_out_time	DATETIME,							/*Time signed out*/
+	check_in	DATETIME DEFAULT CURRENT_TIMESTAMP,	/*Current time used to sign in*/
+	check_out	DATETIME,							/*Time signed out*/
+	infected	BOOLEAN	DEFAULT FALSE,	/*This user is a positive test case*/
+	pos_contact	BOOLEAN	DEFAULT FALSE,	/*This user had close contact with infected person in the past*/
 	
 	CONSTRAINT P_FK FOREIGN KEY (p_username) REFERENCES person (username), 		/*field has to exist in person table*/
 	CONSTRAINT B_FK FOREIGN KEY (b_username) REFERENCES business (username)		/*field has to exist in business table*/
 );
-
-INSERT INTO USERS VALUES('staff1', '#S');
-INSERT INTO STAFF VALUES('staff1', 'password', 'fname', 'lname');
-
-INSERT INTO USERS VALUES('person1', '#P');
-INSERT INTO PERSON VALUES('person1', 'password', 'fname', 'lname');
