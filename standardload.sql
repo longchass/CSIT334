@@ -85,9 +85,31 @@ VALUES('person6', 'fname lname', 'business4', 'address4',TIMESTAMP('2021-04-02 1
 INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
 VALUES('person5', 'fname lname', 'business1', 'address1',TIMESTAMP('2021-04-02 18:53:01'),TIMESTAMP('2021-04-02 18:59:14'));
 INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
-VALUES('person9', 'fname lname', 'business5', 'address5',TIMESTAMP('2021-04-02 19:05:12'),TIMESTAMP('2021-04-02 19:35:12'));
+VALUES('person7', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-02 19:05:12'),TIMESTAMP('2021-04-02 19:35:12'));
 INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
-VALUES('person8', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-02 19:45:10'),TIMESTAMP('2021-04-02 20:40:11'));
+VALUES('person8', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-03 19:45:10'),TIMESTAMP('2021-04-03 20:40:11'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person4', 'fname lname', 'business3', 'address3',TIMESTAMP('2021-04-03 18:45:12'),TIMESTAMP('2021-04-03 18:55:01'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person3', 'fname lname', 'business4', 'address4',TIMESTAMP('2021-04-03 18:51:13'),TIMESTAMP('2021-04-03 18:56:32'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person5', 'fname lname', 'business1', 'address1',TIMESTAMP('2021-04-03 18:53:01'),TIMESTAMP('2021-04-03 18:59:14'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person9', 'fname lname', 'business5', 'address5',TIMESTAMP('2021-04-03 19:05:12'),TIMESTAMP('2021-04-03 19:35:12'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person8', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-03 19:45:10'),TIMESTAMP('2021-04-03 19:35:12'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person1', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-03 19:45:10'),TIMESTAMP('2021-04-03 20:40:11'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person4', 'fname lname', 'business3', 'address3',TIMESTAMP('2021-04-04 18:45:12'),TIMESTAMP('2021-04-04 18:55:01'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person3', 'fname lname', 'business4', 'address4',TIMESTAMP('2021-04-04 18:51:13'),TIMESTAMP('2021-04-04 18:56:32'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person5', 'fname lname', 'business1', 'address1',TIMESTAMP('2021-04-04 18:53:01'),TIMESTAMP('2021-04-04 18:59:14'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person2', 'fname lname', 'business5', 'address5',TIMESTAMP('2021-04-04 19:05:12'),TIMESTAMP('2021-04-04 19:35:12'));
+INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
+VALUES('person1', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-04 19:45:10'),TIMESTAMP('2021-04-04 19:35:12'));
 
 INSERT INTO VACCINE_CERT VALUES('person10', 'fname lname', DATE('2021-04-01') );
 INSERT INTO VACCINE_CERT VALUES('person5', 'fname lname', DATE('2021-04-10') );
