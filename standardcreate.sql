@@ -10,7 +10,7 @@ CREATE TABLE person (
     password	VARCHAR(50) NOT NULL,
 	fname VARCHAR(25) NOT NULL, 		
 	lname VARCHAR(25) NOT NULL,
-	infected	BOOLEAN	DEFAULT FALSE,
+	infected	BOOLEAN,
 
 	FOREIGN KEY (username) REFERENCES USERS(username)
 );
@@ -39,7 +39,7 @@ CREATE TABLE STAFF (
     password	VARCHAR(50) NOT NULL,
 	fname	VARCHAR(25) NOT NULL,
 	lname	VARCHAR(25) NOT NULL,
-	infected BOOLEAN	DEFAULT FALSE,
+	infected BOOLEAN,
 	
 	CONSTRAINT STAFF_FKEY FOREIGN KEY (username) REFERENCES USERS(username)
 );
@@ -62,8 +62,8 @@ CREATE TABLE CHECKIN (
 	address VARCHAR(50) NOT NULL,	
 	check_in	DATETIME DEFAULT CURRENT_TIMESTAMP,	/*Current time used to sign in*/
 	check_out	DATETIME,							/*Time signed out*/
-	infected	BOOLEAN	DEFAULT FALSE,	/*This user is a positive test case*/
-	pos_contact	BOOLEAN	DEFAULT FALSE,	/*This user had close contact with infected person in the past*/
+	infected	BOOLEAN,	/*This user is a positive test case*/
+	pos_contact	BOOLEAN,	/*This user had close contact with infected person in the past*/
 	
 	CONSTRAINT P_FK FOREIGN KEY (p_username) REFERENCES person (username), 		/*field has to exist in person table*/
 	CONSTRAINT B_FK FOREIGN KEY (b_username) REFERENCES business (username)		/*field has to exist in business table*/
