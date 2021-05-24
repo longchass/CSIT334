@@ -10,8 +10,81 @@
    }
    // Prepare a select statement
 	$info = "SELECT username, password, fname, lname FROM person WHERE username = ?";
-	$username = $password = $fname = $lname = "";
+	$username = $first_name = $last_name = $email = $address = "";
+	$username_err = $first_name_err = $last_name_err = $email_err = $address_err = "";
 	$Person = new Person($_SESSION[username], $_SESSION[fname], $_SESSION[lname]);
+ 
+	// Define variables and initialize with empty values
+	$username = $first_name = $last_name = $email = $address = "";
+	$username_err = $first_name_err = $last_name_err = $email_err = $address_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate first name
+    if(empty(trim($_POST["first_name"]))){
+        $first_name_err = "Please enter a first name.";     
+    } elseif(strlen(trim($_POST["first_name"])) < 1){
+        $first_name_err = "Please enter a real first name";
+    } else{
+        $first_name = trim($_POST["first_name"]);
+    }
+
+    // Validate last name
+    if(empty(trim($_POST["last_name"]))){
+        $last_name_err = "Please enter a last name.";     
+    } elseif(strlen(trim($_POST["last_name"])) < 1){
+        $last_name_err = "Please enter a real last name.";
+    } else{
+        $last_name = trim($_POST["last_name"]);
+    }
+
+ 
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($first_name_err)  && empty($last_name_err)){
+
+		$updateUsers = $updateTable = "";
+		
+		$username = trim($_POST["username"]);
+				
+		// Prepare an update statement
+			$updateTable = "UPDATE person set username = ?, fname = ?, lname= ? WHERE username = ?";
+			$updateUsers = "UPDATE users  set username = ? WHERE username =?";
+		
+			if($stmt = mysqli_prepare($link, $updateUsers)){
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt, "s", $username);
+
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt)){
+				} else{
+					echo "Oops! Something went wrong. Please try again later.";
+				}
+			}
+			
+			if($stmt2 = mysqli_prepare($link, $updateTable)){
+				// Set parameters
+				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+				
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt2, "sss", $username, $first_name, $last_name, $_SESSION[username]);
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt2)){
+					// Redirect to login page
+					header("location: index.php");
+				} else{
+					echo "Oops! Something went wrong. Please try again later.sdfsafsadfsadf";
+				}
+
+				// Close statement
+				mysqli_stmt_close($stmt2);
+				mysqli_stmt_close($stmt);
+			}
+			
+		}
+}
+    // Close connection
+    mysqli_close($link);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,28 +123,29 @@
       </script>
     </head>
     <body>
-		      
 		<div id="header" ></div>
         <h3>Profile information</h3>
         <! --Need to put sql query into here-->
         <table width="80%" border="1" align="center">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <tbody>
                 <tr width="33.3%">
                     <td>Username</td>
-                    <td><?php echo htmlspecialchars($Person -> get_username()); ?></td>
-                    <td>&nbsp;</td>
+                    <td><input type="text" name="username" placeholder="Username" required="required <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo htmlspecialchars($Person -> get_username()); ?>"></td>
+                    <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
                     <td>First name</td>
-                    <td><?php echo htmlspecialchars($Person -> get_fname()); ?></td>
-                    <td>Change</td>
+                    <td><input type="text" name="fname"    placeholder="first name" required="required <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_fname()); ?>"></td>
+                    <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
                     <td>Last Name</td>
-                    <td><?php echo htmlspecialchars($Person -> get_lname()); ?></td>
-                    <td>Edit</td>
+                    <td><input type="text" name="fname"    placeholder="first name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_lname()); ?>"></td>
+                    <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>
+			</form>
         </table>
     </body>
 </html>
