@@ -28,7 +28,7 @@ CREATE TABLE business (
 CREATE TABLE VACCINE_CERT (
 	username	VARCHAR(50)		NOT NULL,
 	name 		VARCHAR(50) NOT NULL,		/*the user vaccinated*/
-    vac_date 	DATE	 NOT NULL,			/*date/time user vaccinated - change to just date?*/
+    	vac_date 	DATE	 NOT NULL,		/*date/time user vaccinated - change to just date?*/
 	
 	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username)
 );
@@ -39,7 +39,6 @@ CREATE TABLE STAFF (
     password	VARCHAR(50) NOT NULL,
 	fname	VARCHAR(25) NOT NULL,
 	lname	VARCHAR(25) NOT NULL,
-	infected BOOLEAN,
 	
 	CONSTRAINT STAFF_FKEY FOREIGN KEY (username) REFERENCES USERS(username)
 );
