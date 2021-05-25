@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		
 			if($stmt = mysqli_prepare($link, $updateUsers)){
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "s", $username);
+				mysqli_stmt_bind_param($stmt, "ss", $username, $_SESSION[username]);
 
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
@@ -81,9 +81,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			}
 			
 		}
+	echo $Person -> set_lname($first_name);
+	echo $Person -> set_fname($last_name);
+	echo $Person -> set_username($username);
 }
-    // Close connection
-    mysqli_close($link);
+
 
 ?>
 <!DOCTYPE html>
@@ -131,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <tbody>
                 <tr width="33.3%">
                     <td>Username</td>
-                    <td><input type="text" name="username" placeholder="Username" required="required <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo htmlspecialchars($Person -> get_username()); ?>"></td>
+                    <td><?php echo htmlspecialchars($Person -> get_username()); ?></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
@@ -141,7 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </tr>
                 <tr>
                     <td>Last Name</td>
-                    <td><input type="text" name="fname"    placeholder="first name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_lname()); ?>"></td>
+                    <td><input type="text" name="fname"    placeholder="last name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_lname()); ?>"></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>

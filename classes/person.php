@@ -17,7 +17,19 @@ class Person {
     return $this->lname;
   }
   function get_username() {
-    return $this->lname;
+    return $this->username;
   }
+  function set_lname($l)
+	{
+	$this->lname = $l;
+	}
+  function set_fname($f)
+	{
+	$this->fname = $f;
+	}
+  function set_username($u)
+	{
+	$this->lname = $u;
+	}
 }
 ?>
