@@ -28,11 +28,24 @@ CREATE TABLE business (
 #table for all vaccine certificate
 CREATE TABLE VACCINE_CERT (
 	username	VARCHAR(50)		NOT NULL,
+	vaccine_type  ENUM('Pfizer', 'AstraZeneca'),
 	name 		VARCHAR(50) NOT NULL,		/*the user vaccinated*/
-    	vac_date 	DATE	 NOT NULL,		/*date/time user vaccinated - change to just date?*/
+	vac_date 	DATE	 NOT NULL,		/*date/time user vaccinated - change to just date?*/
 	
 	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username) 
 );
+
+CREATE TABLE Pfizer (
+	username	VARCHAR(50)		NOT NULL,
+	
+	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES VACCINE_CERT (username) 
+);
+
+CREATE TABLE AstraZeneca  (
+	username	VARCHAR(50)		NOT NULL,	
+	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES VACCINE_CERT (username) 
+);
+
 
 #table for admin health staff
 CREATE TABLE STAFF (
