@@ -2,7 +2,8 @@ CREATE TABLE USERS (
 	username	VARCHAR(50)		NOT NULL UNIQUE,
 	privs	CHAR(2)		NOT NULL,
 	
-	CONSTRAINT USER_PKEY PRIMARY KEY (username)
+	CONSTRAINT USER_PKEY PRIMARY KEY (username)  ON UPDATE CASCADE ON DELETE CASCADE
+	
 );
 #user account table
 CREATE TABLE person (
@@ -12,7 +13,7 @@ CREATE TABLE person (
 	lname VARCHAR(25) NOT NULL,
 	infected	BOOLEAN,
 
-	FOREIGN KEY (username) REFERENCES USERS(username)
+	FOREIGN KEY (username) REFERENCES USERS(username) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE business (
@@ -21,7 +22,7 @@ CREATE TABLE business (
     bname	VARCHAR(30)	NOT NULL,
 	address	VARCHAR(150)	NOT NULL,
 
-	FOREIGN KEY (username) REFERENCES USERS(username)
+	FOREIGN KEY (username) REFERENCES USERS(username) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 #table for all vaccine certificate
@@ -30,7 +31,7 @@ CREATE TABLE VACCINE_CERT (
 	name 		VARCHAR(50) NOT NULL,		/*the user vaccinated*/
     vac_date 	DATE	 NOT NULL,			/*date/time user vaccinated - change to just date?*/
 	
-	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username)
+	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username) 
 );
 
 #table for admin health staff
@@ -41,7 +42,7 @@ CREATE TABLE STAFF (
 	lname	VARCHAR(25) NOT NULL,
 	infected BOOLEAN,
 	
-	CONSTRAINT STAFF_FKEY FOREIGN KEY (username) REFERENCES USERS(username)
+	CONSTRAINT STAFF_FKEY FOREIGN KEY (username) REFERENCES USERS(username) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ADMIN (
@@ -51,7 +52,7 @@ CREATE TABLE ADMIN (
 	lname	VARCHAR(25) NOT NULL,
 	department	VARCHAR(40)		NOT NULL,
 	
-	CONSTRAINT ADMIN_PKEY PRIMARY KEY (username)
+	CONSTRAINT ADMIN_PKEY PRIMARY KEY (username) 
 );
 
 #table for check-in logs
