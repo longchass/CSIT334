@@ -2,10 +2,13 @@
 class Person {
   // Properties
   protected $username;
+  protected $password;
   protected $fname;
   protected $lname;
-  public function __construct(string $u, string $f, string $l ) {
+  protected $infected;
+  public function __construct(string $u, string $p, string $f, string $l ) {
 	$this->username = $u;
+	$this->password = $p;
 	$this->fname    = $f;
 	$this->lname    = $l;
   }
@@ -19,6 +22,12 @@ class Person {
   function get_username() {
     return $this->username;
   }
+  function get_password() {
+    return $this->password;
+  }
+  function get_infected() {
+    return $this->infected;
+  }
   function set_lname($l)
 	{
 	$this->lname = $l;
@@ -31,5 +40,11 @@ class Person {
 	{
 	$this->lname = $u;
 	}
+	function set_password($p) {
+		$this->password = $p;
+	}
+  function set_infected($i) {
+    $this->infected = $i;
+  }
 }
 ?>
