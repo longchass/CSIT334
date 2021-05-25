@@ -228,11 +228,19 @@ body {
 }
 .login { 
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   margin: -150px 0 0 -150px;
   width:300px;
   height:300px;
+
+}
+img{ 
+  margin: auto;
+  display: block;
+  width: 50%;
+  border-radius: 8px;
+
 }
 .login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
 
@@ -261,8 +269,9 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
     </style>
 </head>
 <body>
-	<div class="login">
-        <h1>Login</h1>
+	<div class="login" >
+	<img src="images/vaxafe.png" alt="VaXafe">
+        <h1 style="padding-top: 25px;">Login</h1>
         <p>Please fill in your credentials to login.</p>
 
         <?php 
