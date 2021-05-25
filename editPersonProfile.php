@@ -38,35 +38,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $last_name = trim($_POST["last_name"]);
     }
 
- 
+	echo $Person -> set_lname($first_name);
+	echo $Person -> set_fname($last_name);
+	$_SESSION["fname"]    = $first_name;
+	$_SESSION["lname"]    = $last_name;
     // Check input errors before inserting in database
     if(empty($username_err) && empty($first_name_err)  && empty($last_name_err)){
 
-		$updateUsers = $updateTable = "";
+		$updateTable = "";
 		
 		$username = trim($_POST["username"]);
 				
 		// Prepare an update statement
-			$updateTable = "UPDATE person set username = ?, fname = ?, lname= ? WHERE username = ?";
-			$updateUsers = "UPDATE users  set username = ? WHERE username =?";
+			$updateTable = "UPDATE person set  fname = ?, lname= ? WHERE username = ?";
 		
-			if($stmt = mysqli_prepare($link, $updateUsers)){
-				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "ss", $username, $_SESSION[username]);
-
-				// Attempt to execute the prepared statement
-				if(mysqli_stmt_execute($stmt)){
-				} else{
-					echo "Oops! Something went wrong. Please try again later.";
-				}
-			}
-			
 			if($stmt2 = mysqli_prepare($link, $updateTable)){
 				// Set parameters
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt2, "sss", $username, $first_name, $last_name, $_SESSION[username]);
+				mysqli_stmt_bind_param($stmt2, "sss", $first_name, $last_name, $_SESSION[username]);
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt2)){
 					// Redirect to login page
@@ -81,9 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			}
 			
 		}
-	echo $Person -> set_lname($first_name);
-	echo $Person -> set_fname($last_name);
-	echo $Person -> set_username($username);
+
 }
 
 
@@ -138,12 +127,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </tr>
                 <tr>
                     <td>First name</td>
-                    <td><input type="text" name="fname"    placeholder="first name" required="required <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_fname()); ?>"></td>
+                    <td><input type="text" name="first_name"    placeholder="first name" required="required <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_fname()); ?>"></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
                     <td>Last Name</td>
-                    <td><input type="text" name="fname"    placeholder="last name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_lname()); ?>"></td>
+                    <td><input type="text" name="last_name"    placeholder="last name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Person -> get_lname()); ?>"></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>

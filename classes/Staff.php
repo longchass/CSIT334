@@ -18,15 +18,27 @@ class Staff {
   {
 	  $vaccine_cert = new vaccine_cert($username, $name, $vac_date);
   }
-  public function set_name($fname, $lname)
+  public function set_fname($fname)
   {
 	  $this->fname = $fname;
+  }
+   public function set_lname($lname)
+  {
 	  $this->lname = $lname;
   }
   public function get_name() 
   {
 	  $name = $this->fname." ".$this->lname;
 	  return $this->name;
+  }
+  function get_fname() {
+    return $this->fname;
+  }
+  function get_lname() {
+    return $this->lname;
+  }
+  function get_username() {
+    return $this->username;
   }
 }
 ?>

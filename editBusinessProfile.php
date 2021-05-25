@@ -1,6 +1,6 @@
 <?php
 	require 'config.php';
-	require 'Business.php';
+	require 'classes/Business.php';
    // Initialize the session
    session_start();
    // Check if the user is logged in, if not then redirect him to login page
@@ -9,40 +9,70 @@
        exit;
    }
    // Prepare a select statement
-	$info = "SELECT username, password, bname, address FROM business WHERE username = ?";
-	$username = $password = $bname = $address = "";
-	if($stmt = mysqli_prepare($link, $info)) {
-			// Bind variables to the prepared statement as parameters
-			//$param_username = $username;
+	$info = "SELECT username, password, fname, lname FROM Business WHERE username = ?";
+	$username  = $last_name = $email = $address = "";
+	$username_err  = $last_name_err = $email_err = $address_err = "";
+	$Business = new Business($_SESSION[username], $_SESSION[fname], $_SESSION[lname]);
+ 
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate address
+    if(empty(trim($_POST["address"]))){
+        $address_err = "Please enter an address.";     
+    } elseif(strlen(trim($_POST["address"])) < 10){
+        $address_err = "Please enter a real address";
+    } else{
+        $address = trim($_POST["address"]);
+    }
 
-			mysqli_stmt_bind_param($stmt, "s", $_SESSION['username']);
-			
-			// Set parameters
-			
-			// Attempt to execute the prepared statement
-		if(mysqli_stmt_execute($stmt)){
-			// Store result
-			mysqli_stmt_store_result($stmt);
+    // Validate last name
+    if(empty(trim($_POST["last_name"]))){
+        $last_name_err = "Please enter a last name.";     
+    } elseif(strlen(trim($_POST["last_name"])) < 1){
+        $last_name_err = "Please enter a real last name.";
+    } else{
+        $last_name = trim($_POST["last_name"]);
+    }
+
+	echo $Business -> set_address($address);
+	echo $Business -> set_fname($last_name);
+	$_SESSION["fname"]    = $address;
+	$_SESSION["lname"]    = $last_name;
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($address_err)  && empty($last_name_err)){
+
+		$updateTable = "";
+		
+		$username = trim($_POST["username"]);
 				
-			// Check if username exists, if yes then find their privilege
-			if(mysqli_stmt_num_rows($stmt) == 1){  
+		// Prepare an update statement
+			$updateTable = "UPDATE Business set  fname = ?, lname= ? WHERE username = ?";
+		
+			if($stmt2 = mysqli_prepare($link, $updateTable)){
+				// Set parameters
+				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
-				mysqli_stmt_bind_result($stmt, $username, $password, $bname, $address);
-				if(mysqli_stmt_fetch($stmt)){
-				}
-				else
-				{
-					echo "<script type='text/javascript'>alert('No result found');</script>";
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt2, "sss", $address, $last_name, $_SESSION[username]);
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt2)){
+					// Redirect to login page
+					header("location: index.php");
+				} else{
+					echo "Oops! Something went wrong. Please try again later.sdfsafsadfsadf";
 				}
 
-			} else{
-				echo "<script type='text/javascript'>alert('Execution error');</script>";
+				// Close statement
+				mysqli_stmt_close($stmt2);
+				mysqli_stmt_close($stmt);
 			}
-			mysqli_stmt_close($stmt);
+			
 		}
-	// Close connection
-	mysqli_close($link);
-	}
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,35 +104,36 @@
         </style>
 		      <script>
          $(function(){
-           $("#header").load("html/BusinessHeader.html"); 
+           $("#header").load("html/StaffHeader.html"); 
          
          });
          		
       </script>
     </head>
     <body>
-		      
 		<div id="header" ></div>
         <h3>Profile information</h3>
         <! --Need to put sql query into here-->
         <table width="80%" border="1" align="center">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <tbody>
                 <tr width="33.3%">
                     <td>Username</td>
-                    <td><?php echo htmlspecialchars($_SESSION["username"]); ?></td>
-                    <td>&nbsp;</td>
+                    <td><?php echo htmlspecialchars($Business -> get_username()); ?></td>
+                    <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
-                    <td>Business name</td>
-                    <td><?php echo htmlspecialchars($bname); ?></td>
-                    <td>Edit</td>
+                    <td>address name</td>
+                    <td><input type="text" name="address"    placeholder="address name" required="required <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_address()); ?>"></td>
+                    <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
-                    <td>Address</td>
-                    <td><?php echo htmlspecialchars($address); ?></td>
-                    <td>Edit</td>
+                    <td>Last Name</td>
+                    <td><input type="text" name="last_name"    placeholder="last name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_lname()); ?>"></td>
+                    <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>
+			</form>
         </table>
     </body>
 </html>
