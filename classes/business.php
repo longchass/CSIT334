@@ -16,6 +16,10 @@ class Business
     {
         $this->name = $name;
     }
+    function get_username()
+    {
+		return $this->username;    
+	}
     function set_address($address)
     {
         $this->address = $address;

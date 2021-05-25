@@ -10,9 +10,9 @@
    }
    // Prepare a select statement
 	$info = "SELECT username, password, fname, lname FROM Business WHERE username = ?";
-	$username  = $last_name = $email = $address = "";
-	$username_err  = $last_name_err = $email_err = $address_err = "";
-	$Business = new Business($_SESSION[username], $_SESSION[fname], $_SESSION[lname]);
+	$username  = $bname = $address = "";
+	$username_err  = $bname_err = $email_err = $address_err = "";
+	$Business = new Business($_SESSION[username], $_SESSION[bname], $_SESSION[address]);
  
  
 // Processing form data when form is submitted
@@ -26,35 +26,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $address = trim($_POST["address"]);
     }
 
-    // Validate last name
-    if(empty(trim($_POST["last_name"]))){
-        $last_name_err = "Please enter a last name.";     
-    } elseif(strlen(trim($_POST["last_name"])) < 1){
-        $last_name_err = "Please enter a real last name.";
+    // Validate business name
+    if(empty(trim($_POST["bname"]))){
+        $bname_err = "Please enter a business name.";     
+    } elseif(strlen(trim($_POST["bname"])) < 1){
+        $bname_err = "Please enter a real business name.";
     } else{
-        $last_name = trim($_POST["last_name"]);
+        $bname = trim($_POST["bname"]);
     }
 
 	echo $Business -> set_address($address);
-	echo $Business -> set_fname($last_name);
-	$_SESSION["fname"]    = $address;
-	$_SESSION["lname"]    = $last_name;
+	echo $Business -> set_fname($bname);
+	$_SESSION["address"]    = $address;
+	$_SESSION["bname"]    = $bname;
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($address_err)  && empty($last_name_err)){
+    if(empty($username_err) && empty($address_err)  && empty($bname_err)){
 
 		$updateTable = "";
 		
 		$username = trim($_POST["username"]);
 				
 		// Prepare an update statement
-			$updateTable = "UPDATE Business set  fname = ?, lname= ? WHERE username = ?";
+			$updateTable = "UPDATE Business set  address = ?, bname= ? WHERE username = ?";
 		
 			if($stmt2 = mysqli_prepare($link, $updateTable)){
 				// Set parameters
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt2, "sss", $address, $last_name, $_SESSION[username]);
+				mysqli_stmt_bind_param($stmt2, "sss", $address, $bname, $_SESSION[username]);
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt2)){
 					// Redirect to login page
@@ -123,13 +123,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
-                    <td>address name</td>
-                    <td><input type="text" name="address"    placeholder="address name" required="required <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_address()); ?>"></td>
+                    <td>Address </td>
+                    <td><input type="text" name="address"    placeholder="address" required="required <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_address()); ?>"></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
                 <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" name="last_name"    placeholder="last name" required="required <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_lname()); ?>"></td>
+                    <td>Name</td>
+                    <td><input type="text" name="Name"    placeholder="Name" required="required <?php echo (!empty($bname_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_name()); ?>"></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>

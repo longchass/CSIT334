@@ -14,10 +14,6 @@
 	$username_err = $first_name_err = $last_name_err = $email_err = $address_err = "";
 	$Person = new Person($_SESSION[username], $_SESSION[fname], $_SESSION[lname]);
  
-	// Define variables and initialize with empty values
-	$username = $first_name = $last_name = $email = $address = "";
-	$username_err = $first_name_err = $last_name_err = $email_err = $address_err = "";
- 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate first name
