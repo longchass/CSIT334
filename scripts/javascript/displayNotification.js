@@ -39,3 +39,15 @@ function runEmailNotification(inText) {
         }
     });
 }
+
+//sends a SMS to a SINGLE NUMBER based on number and message given
+//will not work until a verified number is added. Not done due to risk of having number sent to spammers.
+function runSMSNotification(inNumber, inMessage) {
+    $.ajax({
+        type: 'POST',
+        url: 'scripts/php_scripts/SMS_notification.php',
+        data: {
+            number: inNumber, message: inMessage
+        }
+    });
+}
