@@ -111,5 +111,8 @@ VALUES('person2', 'fname lname', 'business5', 'address5',TIMESTAMP('2021-04-04 1
 INSERT INTO CHECKIN (p_username, name, b_username, address, check_in, check_out)
 VALUES('person1', 'fname lname', 'business2', 'address2',TIMESTAMP('2021-04-04 19:45:10'),TIMESTAMP('2021-04-04 19:35:12'));
 
-INSERT INTO VACCINE_CERT VALUES('person10', 'fname lname', DATE('2021-04-01') );
-INSERT INTO VACCINE_CERT VALUES('person5', 'fname lname', DATE('2021-04-10') );
+INSERT INTO VACCINE_CERT VALUES('person10', 'Pfizer', 'fname lname', DATE('2021-04-01') );
+INSERT INTO VACCINE_CERT VALUES('person5', 'AstraZeneca', 'fname lname', DATE('2021-04-10') );
+
+INSERT INTO Pfizer VALUES('person10');
+INSERT INTO AstraZeneca VALUES('person5');
