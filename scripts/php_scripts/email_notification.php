@@ -7,10 +7,10 @@
 $text = $_POST['email'];
 
 //pases inputs correctly to python
-$command2 = 'python sendEmail.py ' . $text;
+$command = 'python sendEmail.py ' . $text;
 
 //executes command and returns output
-$output = shell_exec($command2);
+$output = shell_exec($command);
 
 //output of the email script
 echo $output;

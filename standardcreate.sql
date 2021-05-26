@@ -29,8 +29,8 @@ CREATE TABLE business (
 CREATE TABLE VACCINE_CERT (
 	username	VARCHAR(50)		NOT NULL,
 	vaccine_type  ENUM('Pfizer', 'AstraZeneca'),
-	name 		VARCHAR(50) NOT NULL,		/*the user vaccinated*/
-	vac_date 	DATE	 NOT NULL,		/*date/time user vaccinated - change to just date?*/
+	name 		VARCHAR(50) NOT NULL,
+	vac_date 	DATE	 NOT NULL,
 	
 	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username) 
 );
