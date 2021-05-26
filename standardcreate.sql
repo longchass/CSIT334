@@ -21,6 +21,8 @@ CREATE TABLE business (
 	password	VARCHAR(50) NOT NULL,
     bname	VARCHAR(30)	NOT NULL,
 	address	VARCHAR(150)	NOT NULL,
+	guest_num	INT(3)		NOT NULL,
+	guest_lim	INT(3)		NOT NULL,
 
 	FOREIGN KEY (username) REFERENCES USERS(username) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -29,10 +31,11 @@ CREATE TABLE business (
 CREATE TABLE VACCINE_CERT (
 	username	VARCHAR(50)		NOT NULL,
 	vaccine_type  ENUM('Pfizer', 'AstraZeneca'),
-	name 		VARCHAR(50) NOT NULL,
 	vac_date 	DATE	 NOT NULL,
+	health_staff	VARCHAR(50)		NOT NULL,
 	
-	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username) 
+	CONSTRAINT VACCINE_FKEY FOREIGN KEY (username) REFERENCES person (username),
+	CONSTRAINT VACCINE_STAFF FOREIGN KEY (health_staff) REFERENCES staff (username)
 );
 
 CREATE TABLE Pfizer (
