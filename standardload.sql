@@ -14,43 +14,43 @@ INSERT INTO STAFF (username, password, fname, lname)
 VALUES('staff3', 'password', 'fname', 'lname');
 
 INSERT INTO USERS VALUES('person1', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person1', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person2', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person2', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person3', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person3', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person4', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person4', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person5', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person5', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person6', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person6', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person7', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person7', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person8', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person8', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person9', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person9', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('person10', '#P');
-INSERT INTO PERSON (username, password, fname, lname)
+INSERT INTO PERSON (username, password, fname, lname, infected)
 VALUES('person10', 'password', 'fname', 'lname', FALSE);
 
 INSERT INTO USERS VALUES('business1', '#B');
