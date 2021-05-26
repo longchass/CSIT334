@@ -65,6 +65,110 @@ BEGIN
 	END IF;
 END//
 
+
+
+
+
+DELIMITER //
+CREATE TRIGGER NEW_USER_INSERT
+AFTER insert ON USERS
+FOR EACH ROW
+BEGIN
+
+update STATISTIC set total_user = (select COUNT(*) FROM USERS);
+END//
+
+
+DELIMITER //
+CREATE TRIGGER NEW_USER_UPDATE
+AFTER DELETE ON USERS
+FOR EACH ROW
+BEGIN
+
+update STATISTIC set total_user = (select COUNT(*) FROM USERS);
+END//
+
+
+
+DELIMITER //
+CREATE TRIGGER NEW_CASE_CERT_INSERT
+AFTER insert ON vaccine_cert
+FOR EACH ROW
+BEGIN
+update STATISTIC set vaccinated_user= (SELECT COUNT(*) from vaccine_cert where vaccine_type != NULL);
+END//
+
+DELIMITER //
+CREATE TRIGGER NEW_CASE_CERT_UPDATE
+AFTER UPDATE ON vaccine_cert
+FOR EACH ROW
+BEGIN
+
+update STATISTIC set vaccinated_user= (SELECT COUNT(*) from vaccine_cert where vaccine_type != NULL);
+
+END//
+
+DELIMITER //
+CREATE TRIGGER NEW_CASE_CERT_DELETE
+AFTER delete ON vaccine_cert
+FOR EACH ROW
+BEGIN
+
+update STATISTIC set vaccinated_user= (SELECT COUNT(*) from vaccine_cert where vaccine_type != NULL);
+
+END//
+
+
+DELIMITER //
+CREATE TRIGGER NEW_CONTACT_CHECKIN_INSERT
+AFTER insert on checkin
+FOR EACH ROW
+BEGIN
+update STATISTIC set positive_contact = (SELECT COUNT(*) from checkin where pos_contact = TRUE);
+END//
+
+DELIMITER //
+CREATE TRIGGER NEW_CONTACT_CHECKIN_UPDATE
+AFTER update on checkin
+FOR EACH ROW
+BEGIN
+update STATISTIC set positive_contact = (SELECT COUNT(*) from checkin where pos_contact = TRUE);
+END//
+
+DELIMITER //
+CREATE TRIGGER NEW_CONTACT_CHECKIN_DELETE
+AFTER DELETE on checkin
+FOR EACH ROW
+BEGIN
+update STATISTIC set positive_contact = (SELECT COUNT(*) from checkin where pos_contact = TRUE);
+END//
+
+
+
+DELIMITER //
+CREATE TRIGGER NEW_CASE_VACCINATED_INSERT
+AFTER insert on person
+FOR EACH ROW
+BEGIN
+update STATISTIC set positive_cases = (SELECT COUNT(*) WHERE infected = TRUE);
+END//
+
+DELIMITER //
+CREATE TRIGGER NEW_CASE_VACCINATED_UPDATE
+AFTER UPDATE on person
+FOR EACH ROW
+BEGIN
+update STATISTIC set positive_cases = (SELECT COUNT(*) WHERE infected = TRUE);
+END//
+
+DELIMITER //
+CREATE TRIGGER NEW_CASE_VACCINATED_DELETE
+AFTER DELETE on person
+FOR EACH ROW
+BEGIN
+update STATISTIC set positive_cases = (SELECT COUNT(*) WHERE infected = TRUE);
+END//
+
 /*Update one new case of user 'person8' */
 UPDATE person
 SET INFECTED= TRUE

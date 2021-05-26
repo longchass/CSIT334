@@ -2,16 +2,9 @@
 	require 'config.php';
  	require 'classes/staff.php';
 	require 'classes/sessioncheck.php';
-    //Initialize the session
-	    //Initialize the session
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate first name
 	
-		$status =$_POST['infected_status'];
-		$username = trim($_POST["username"]);
-				
-		// Prepare an update statement
-			$updatestatus = "UPDATE PERSON SET infected = ? where username = ?";
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+			$updatestatus = "SELECT * FROM STATISTIC";
 
 		
 			if($stmt = mysqli_prepare($link, $updatestatus)){
@@ -19,7 +12,6 @@
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "ss", $status,$username);
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
 				} else{
@@ -34,6 +26,14 @@
 			
 			
 			mysqli_stmt_close($stmt);
+			
+	$total_population = 
+	$total_user		  =
+	$vaccinated_user  =
+	$positive_cases   =
+	$positive_contact =
+				
+
 	}
 ?>
 <!DOCTYPE html>
