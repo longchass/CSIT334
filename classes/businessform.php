@@ -6,7 +6,7 @@ require_once "config.php";
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $password_hash = $privs = $bnamee = $address = "";
 $username_err = $password_err = $confirm_password_err = $bname_err = $address_err = "";
- 
+$guest_num = $guest_lim = 0;
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
@@ -41,7 +41,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 	
-	//Check if user is a staff
 
 
     // Validate business name
@@ -60,6 +59,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $address_err = "Please enter a real address";
     } else{
         $address = trim($_POST["address"]);
+    }
+	
+	// Validate guest limit, must be at least 1
+    if(intval($_POST["guest_lim"]) < 1 ){
+        $guest_lim_err = "Please enter a valid guest limit (at least 1).";     
+    } else{
+        $guest_lim = intval($_POST["guest_lim"]);
     }
 	
     // Validate password
@@ -83,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
  
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($bname_err) && empty($address_err)  ){
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($bname_err) && empty($address_err) && empty($guest_lim_err)){
         //Initialize 2 insert statements and set privilege to #B for business
 		$privs = "#B";
 		$insertUsers = $insertTable = "";
@@ -92,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		
 		// Prepare an insert statement
 		$insertUsers = "INSERT INTO users (username, privs) VALUES (?, ?)";
-		$insertTable = "INSERT INTO business (username, password, bname, address) VALUES (?, ?, ?, ?)";
+		$insertTable = "INSERT INTO business (username, password, bname, address, guest_num, guest_lim) VALUES (?, ?, ?, ?, ?, ?)";
 			echo "<script type='text/javascript'>alert('insert script is invalid');</script>";
 
 		
@@ -112,7 +118,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt2, "ssss", $username, $password, $bname, $address);
+				mysqli_stmt_bind_param($stmt2, "ssssii", $username, $password, $bname, $address, $guest_num, $guest_lim);
 				
 
 				// Attempt to execute the prepared statement

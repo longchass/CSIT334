@@ -49,6 +49,11 @@ require 'classes/businessform.php'
                 <span class="invalid-feedback"><?php echo $address_err; ?></span>
             </div>
 			<div class="form-group">
+                <label>Capacity</label>
+                <input type="text" name="guest_lim" class="form-control <?php echo (!empty($guest_lim_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $guest_lim; ?>">
+                <span class="invalid-feedback"><?php echo $guest_lim_err; ?></span>
+            </div>
+			<div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>

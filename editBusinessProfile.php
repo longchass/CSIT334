@@ -8,11 +8,11 @@
        header("location: index.php");
        exit;
    }
-   // Prepare a select statement
-	$info = "SELECT username, password, fname, lname FROM Business WHERE username = ?";
+   
 	$username  = $bname = $address = "";
-	$username_err  = $bname_err = $email_err = $address_err = "";
-	$Business = new Business($_SESSION[username], $_SESSION[bname], $_SESSION[address]);
+	$guest_lim = 0;
+	$username_err  = $bname_err = $email_err = $address_err = $guest_lim_err = "";
+	$Business = new Business($_SESSION['username'], $_SESSION['bname'], $_SESSION['address'], intval($_SESSION['guest_lim']) );
  
  
 // Processing form data when form is submitted
@@ -34,27 +34,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $bname = trim($_POST["bname"]);
     }
+	
+	// Validate guest limit, must be at least 1
+    if(intval($_POST["guest_lim"]) < 1 ){
+        $guest_lim_err = "Please enter a valid guest limit (at least 1).";     
+    } else{
+        $guest_lim = intval($_POST["guest_lim"]);
+    }
 
 	echo $Business -> set_address($address);
-	echo $Business -> set_fname($bname);
+	echo $Business -> set_name($bname);
+	echo $Business -> set_guest_lim($guest_lim);
 	$_SESSION["address"]    = $address;
 	$_SESSION["bname"]    = $bname;
+	$_SESSION["guest_lim"]= $guest_lim;
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($address_err)  && empty($bname_err)){
+    if(empty($username_err) && empty($address_err)  && empty($bname_err) && empty($guest_lim_err) ){
 
 		$updateTable = "";
 		
 		$username = trim($_POST["username"]);
 				
 		// Prepare an update statement
-			$updateTable = "UPDATE Business set  address = ?, bname= ? WHERE username = ?";
+			$updateTable = "UPDATE Business set  address = ?, bname= ?, guest_lim=? WHERE username = ?";
 		
 			if($stmt2 = mysqli_prepare($link, $updateTable)){
 				// Set parameters
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt2, "sss", $address, $bname, $_SESSION[username]);
+				mysqli_stmt_bind_param($stmt2, "ssis", $address, $bname, $guest_lim, $_SESSION[username]);
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt2)){
 					// Redirect to login page
@@ -104,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </style>
 		      <script>
          $(function(){
-           $("#header").load("html/StaffHeader.html"); 
+           $("#header").load("html/BusinessHeader.html"); 
          
          });
          		
@@ -130,6 +139,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <tr>
                     <td>Name</td>
                     <td><input type="text" name="Name"    placeholder="Name" required="required <?php echo (!empty($bname_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_name()); ?>"></td>
+                    <td><input type="submit" value="Change"></td>
+                </tr>
+                <tr>
+                    <td>Capacity</td>
+                    <td><input type="text" name="guest_lim" placeholder="Guest limit" required="required <?php echo (!empty($guest_lim_err)) ? 'is-invalid' : ''; ?>" value = "<?php echo htmlspecialchars($Business -> get_guest_lim()); ?>"></td>
                     <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>
