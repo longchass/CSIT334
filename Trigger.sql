@@ -150,7 +150,7 @@ CREATE TRIGGER NEW_CASE_VACCINATED_INSERT
 AFTER insert on person
 FOR EACH ROW
 BEGIN
-update STATISTIC set positive_cases = (SELECT COUNT(*) WHERE infected = TRUE);
+update STATISTIC set positive_cases = (SELECT COUNT(*) from person WHERE infected = TRUE);
 END//
 
 DELIMITER //
@@ -158,7 +158,7 @@ CREATE TRIGGER NEW_CASE_VACCINATED_UPDATE
 AFTER UPDATE on person
 FOR EACH ROW
 BEGIN
-update STATISTIC set positive_cases = (SELECT COUNT(*) WHERE infected = TRUE);
+update STATISTIC set positive_cases = (SELECT COUNT(*) from person WHERE infected = TRUE);
 END//
 
 DELIMITER //
@@ -166,7 +166,7 @@ CREATE TRIGGER NEW_CASE_VACCINATED_DELETE
 AFTER DELETE on person
 FOR EACH ROW
 BEGIN
-update STATISTIC set positive_cases = (SELECT COUNT(*) WHERE infected = TRUE);
+update STATISTIC set positive_cases = (SELECT COUNT(*) from person WHERE infected = TRUE);
 END//
 
 /*Update one new case of user 'person8' */
