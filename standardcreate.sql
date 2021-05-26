@@ -84,3 +84,11 @@ CREATE TABLE CHECKIN (
 	CONSTRAINT P_FK FOREIGN KEY (p_username) REFERENCES person (username), 		/*field has to exist in person table*/
 	CONSTRAINT B_FK FOREIGN KEY (b_username) REFERENCES business (username)		/*field has to exist in business table*/
 );
+CREATE TABLE STATISTIC (
+	total_population BIGINT (20) NOT NULL,
+	total_user	BIGINT (20)		NOT NULL,		/*Personal ID*/
+	vaccinated_user BIGINT (20)		NOT NULL,
+	positive_cases BIGINT (20) NOT NULL,
+	positive_contact BIGINT (20) NOT NULL
+);
+insert into STATISTIC values (25770964, 0, 0, 0, 0, 0);
