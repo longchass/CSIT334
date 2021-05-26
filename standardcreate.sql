@@ -90,4 +90,4 @@ CREATE TABLE STATISTIC (
 	positive_cases BIGINT (20) NOT NULL,
 	positive_contact BIGINT (20) NOT NULL
 );
-insert into STATISTIC values (25770964, 0, 0, 0, 0, 0);
+insert into STATISTIC values (25770964, 0, 0, 0, 0);
