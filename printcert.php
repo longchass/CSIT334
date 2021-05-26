@@ -88,7 +88,7 @@ require 'classes/person.php';
 			<tr><td colspan='2'>Please keep this record card, which includes medical information about the vaccines you have received.</td></tr>
 			<tr>
 				<td width='50%'>First name: <?php echo htmlspecialchars($Person->get_fname());?></td>
-				<td width='50%'>Last name: <?php echo htmlspecialchars($Person->get_fname());?></td>
+				<td width='50%'>Last name: <?php echo htmlspecialchars($Person->get_lname());?></td>
 			</tr>
 		</table>
 		</td>
