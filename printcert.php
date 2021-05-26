@@ -53,7 +53,7 @@ require 'classes/person.php';
 	</head>
 <body>
 	<?php
-		$sql = "SELECT PERSON.USERNAME, FNAME, LNAME, INFECTED, VACCINE_TYPE, VAC_DATE
+		$sql = "SELECT PERSON.USERNAME, FNAME, LNAME, INFECTED, VACCINE_TYPE, VAC_DATE, HEALTH_STAFF
 				FROM person LEFT OUTER JOIN vaccine_cert
 				ON person.username = vaccine_cert.username
 				WHERE person.username like ?";
@@ -69,6 +69,7 @@ require 'classes/person.php';
 						$Person->set_infected($row[3]);
 						$vaccine = $row[4];
 						$vac_date = $row[5];
+						$staff = $row[6];
 					} 
 				}else {
 					echo "No record found";
@@ -105,7 +106,7 @@ require 'classes/person.php';
 				<td>1st Dose Covid-19</td>
 				<td><?php echo htmlspecialchars($vaccine);?></td>
 				<td><?php echo htmlspecialchars($vac_date);?></td>
-				<td></td>
+				<td><?php echo htmlspecialchars($staff);?></td>
 			</tr>
 			<tr>
 				<td>2nd Dose Covid-19</td>
