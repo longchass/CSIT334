@@ -1,5 +1,7 @@
 <?php
 //require vaccine_cert.php;
+require 'Peson.php';
+require '{parent_dir}config.php';
 
 class Staff {
   // Properties
