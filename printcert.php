@@ -89,10 +89,6 @@ require 'classes/person.php';
 				<td width='50%'>First name: <?php echo htmlspecialchars($Person->get_fname());?></td>
 				<td width='50%'>Last name: <?php echo htmlspecialchars($Person->get_fname());?></td>
 			</tr>
-			<tr>
-				<td width='50%'>Date of birth: </td>
-				<td width='50%'>Patient number: </td>
-			</tr>
 		</table>
 		</td>
 		</tr>
