@@ -49,14 +49,3 @@ class Checkin
 }
 ?>
 
-/* CREATE TABLE CHECKIN (
-	p_username	VARCHAR(50)		NOT NULL,		/*Personal ID*/
-    name	VARCHAR(50) NOT NULL,		
-	b_username	VARCHAR(50)		NOT NULL,		/*Business ID*/
-	address VARCHAR(50) NOT NULL,	
-	check_in_time	DATETIME DEFAULT CURRENT_TIMESTAMP,	/*Current time used to sign in*/
-	check_out_time	DATETIME,							/*Time signed out*/
-	
-	CONSTRAINT P_FK FOREIGN KEY (p_username) REFERENCES person (username), 		/*field has to exist in person table*/
-	CONSTRAINT B_FK FOREIGN KEY (b_username) REFERENCES business (username)		/*field has to exist in business table*/
-); */
