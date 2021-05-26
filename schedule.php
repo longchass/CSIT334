@@ -1,6 +1,8 @@
 <?php
 	require 'config.php';
    session_start();
+ 
+
    // Check if the user is logged in, if not then redirect him to login page
    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["privs"] != "#S" ){
        header("location: index.php");
@@ -13,18 +15,15 @@
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate first name
-	$username = $_POST['username'];
-	$vaccine_type = $_POST['vaccine_type'];
-	$new_date = date('Y/m/d', strtotime($_POST['dateFrom']));
-echo $new_date;
+	$vaccine_type = " ";
+	$new_date = date('Y-m-d', strtotime($_POST['dateFrom']));
+	 
 
-	$_SESSION["fname"]    = $first_name;
-	$_SESSION["lname"]    = $last_name;
     // Check input errors before inserting in database
     if(empty($username_err) && empty($first_name_err)  && empty($last_name_err)){
 
-		$updateVaccine = "";
-		
+		$vaccine_type =$_POST['vaccine_type'];
+
 		$username = trim($_POST["username"]);
 				
 		// Prepare an update statement
@@ -32,25 +31,25 @@ echo $new_date;
 
 			$updateVaccine = "INSERT into ? values( ?)";
 		
-			if($stmt2 = mysqli_prepare($link, $updateVaccine)){
+			if($stmt = mysqli_prepare($link, $info)){
 				// Set parameters
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt2, "sss", $first_name, $last_name, $_SESSION[username]);
+				mysqli_stmt_bind_param($stmt, "ssss", $username, $vaccine_type, $_SESSION[username],$new_date);
 				// Attempt to execute the prepared statement
-				if(mysqli_stmt_execute($stmt2)){
-					// Redirect to login page
-					header("location: index.php");
+				if(mysqli_stmt_execute($stmt)){
 				} else{
-					echo "Oops! Something went wrong. Please try again later.sdfsafsadfsadf";
+
+					echo $stmt->error;
 				}
 
 				// Close statement
-				mysqli_stmt_close($stmt2);
-				mysqli_stmt_close($stmt);
+
 			}
 			
+			
+			mysqli_stmt_close($stmt);
 		}
 
 }
@@ -104,12 +103,12 @@ echo $new_date;
                     <td>Username</td>
                 <td><input type="text" name="username" placeholder="Username" required="required <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span></td>
-					<td>    <select id="vaccine_type">
+				<td> <select name="vaccine_type">
         <option value="AstraZeneca">AstraZeneca</option>
         <option value="Pfizer">Pfizer</option>
     </select></td>
 				<td>
-    <input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" />
+				<input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" />
 				</td>
 				
                     <td><input type="submit" value="Change"></td>
