@@ -91,6 +91,7 @@ require 'classes/sessioncheck.php'
     <h1 class="my-5">
         Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.
     </h1>
+	<button onclick="runPushNotification('TEST')" type="button" class="btn btn-primary">subscribe to our newsletter for the latest updates on covid news</button>
     <h1 align="left" style="padding-left: 30px;">DASHBOARD</h1>
     <table width="90%" border="1" align="center">
         <tbody>
@@ -151,7 +152,6 @@ require 'classes/sessioncheck.php'
     </div>
 
     
-    <button onclick="runPushNotification('TEST')">Test notification</button>
     
 
 

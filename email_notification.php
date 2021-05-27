@@ -29,7 +29,7 @@ $command = 'python sendEmail.py ' . $text;
 	<script>
 $(document).ready(function(){
    
-		$("#header").load("StaffHeader.html");
+		$("#header").load("html/StaffHeader.html");
 
 });
 	
