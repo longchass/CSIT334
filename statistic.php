@@ -1,6 +1,7 @@
 <?php
 require 'config.php';
 require 'classes/sessioncheck.php';
+
 $total_population = $total_user	=  $vaccinated_user  = $positive_cases   = $positive_contact = " ";
 function divideFloat($a, $b, $precision = 3)
 {
@@ -192,19 +193,13 @@ $AstraZeneca_count = $row[0];
 			// Themes end
 
 			//Gets data from variables holding statistic data
-			var total_population = <?php echo ($total_population); ?>;
+			var total_population = <?php echo json_encode($total_population); ?>;
 			var total_user = <?php echo json_encode($total_user); ?>;
 			var vaccinated_user = <?php echo json_encode($vaccinated_user); ?>;
 			var positive_cases = <?php echo json_encode($positive_cases); ?>;
 			var positive_contact = <?php echo json_encode($positive_contact); ?>;
 
-			//total population too big for test data
-			//remove, only for debugging
-			total_population = 3500;;
-			total_user = 2000;
-			vaccinated_user = 100;
-			positive_cases = 100;
-			positive_contact = 100;
+			
 
 			//this can customised if needed
 			var data = [{
