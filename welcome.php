@@ -135,19 +135,16 @@ $vaccinated_user_count  = $AstraZeneca_count + $Pfizer_count;
 			var positive_cases = <?php echo json_encode($positive_cases); ?>;
 			var positive_contact = <?php echo json_encode($positive_contact); ?>;
 
-            positive_cases = 4;
-            positive_contact = 8;
-
             // Add data
             chart.data = [{
                 "field_name": "Vaccinated User Total",
                 "data_value": vaccinated_user_count
             }, {
 				"field_name": "Positive cases",
-				"data": positive_cases
+				"data_value": positive_cases
 			}, {
 				"field_name": "Encounter with positive cases",
-				"data": positive_contact
+				"data_value": positive_contact
 			}];
 
             // Create axes

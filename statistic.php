@@ -12,15 +12,8 @@ function divideFloat($a, $b, $precision = 3)
 }
 $updatestatus = "SELECT * FROM STATISTIC LIMIT 1";
 if ($stmt = mysqli_prepare($link, $updatestatus)) {
-	// Set parameters
-	//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-
-	// Bind variables to the prepared statement as parameters
 	// Attempt to execute the prepared statement
 	mysqli_stmt_execute($stmt);
-
-
-	// Close statement
 
 }
 $result = $stmt->get_result();
