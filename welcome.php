@@ -71,17 +71,19 @@ require 'classes/sessioncheck.php'
         }
     </style>
 
-    <script>
-        //required for notifications
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-            OneSignal.init({
-                appId: "4354d47c-391a-40fd-967f-fbe4df633c0c",
-            });
-        });
-    </script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "4354d47c-391a-40fd-967f-fbe4df633c0c",
+    });
+  });
+</script>
 
 </head>
+
+
 
 <body>
     <div id="header"></div>
@@ -146,7 +148,11 @@ require 'classes/sessioncheck.php'
             </div>
         </div>
 
-    </div>    
+    </div>
+
+    
+    <button onclick="runPushNotification('TEST')">Test notification</button>
+    
 
 
 </body>
