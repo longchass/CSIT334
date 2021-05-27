@@ -99,7 +99,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 
 	<div id="header" ></div>
 	<div class="login" >
-        <h1 style="padding-top: 25px;">Send emails</h1>
+        <h1 style="padding-top: 25px;">Send email</h1>
         <p>Please fill an email address.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             
@@ -107,7 +107,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
                 <input type="text" name="email" placeholder="Email">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             
-                <input type="submit" class="btn btn-primary btn-block btn-large" value="Login">
+                <input type="submit" class="btn btn-primary btn-block btn-large" value="Send Email">
         </form>
 		
 		

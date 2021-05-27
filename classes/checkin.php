@@ -1,6 +1,6 @@
 <?php
-require person.php;
-require business.php;
+require 'person.php';
+require 'business.php';
 class Checkin
 {
     // Properties
