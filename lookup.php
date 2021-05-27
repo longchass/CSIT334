@@ -26,9 +26,7 @@
 
 					echo $stmt->error;
 				}
-				printf("Current user registered", $username);
-
-				// Close statement
+				
 
 			}
 			
