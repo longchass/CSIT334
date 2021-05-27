@@ -106,17 +106,7 @@ $vaccinated_user_count  = $AstraZeneca_count + $Pfizer_count;
         }
     </style>
 
-
-
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-    <script>
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-            OneSignal.init({
-                appId: "4354d47c-391a-40fd-967f-fbe4df633c0c",
-            });
-        });
-    </script>
+    
     <!-- Graph code -->
     <script>
         am4core.ready(function() {
