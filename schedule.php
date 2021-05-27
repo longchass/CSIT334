@@ -1,5 +1,6 @@
 <?php
 	require 'config.php';
+	require 'classes/sessioncheck.php';
    session_start();
  
 
@@ -8,9 +9,6 @@
        header("location: index.php");
        exit;
    }
-
-
- 	$username_err = $first_name_err = $last_name_err = $email_err = $address_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -36,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "ssss", $username, $vaccine_type, $_SESSION[username],$new_date);
+				mysqli_stmt_bind_param($stmt, "ssss", $username, $vaccine_type,$new_date, $_SESSION[username]);
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
 				} else{
@@ -80,17 +78,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 font-family: "Open Sans", sans-serif;
                 background: #092756;
             }
+			tr{
+				background:#0000cc;
+			}
             td {
                 width: 33.3%;
             }
         </style>
-		      <script>
-         $(function(){
-           $("#header").load("html/PersonHeader.html"); 
-         
-         });
-         		
-      </script>
     </head>
     <body>
 		<div id="header" ></div>
@@ -103,14 +97,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <td>Username</td>
                 <td><input type="text" name="username" placeholder="Username" required="required <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span></td>
-				<td> <select name="vaccine_type">
-        <option value="AstraZeneca">AstraZeneca</option>
-        <option value="Pfizer">Pfizer</option>
-    </select></td>
+				<td><select name="vaccine_type">
+						<option value="AstraZeneca">AstraZeneca</option>
+						<option value="Pfizer">Pfizer</option>
+					</select></td>
 				<td>
 				<input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" />
 				</td>
-				
                     <td><input type="submit" value="Change"></td>
                 </tr>
             </tbody>
