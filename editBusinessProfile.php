@@ -10,10 +10,10 @@
    }
    
 	$username  = $bname = $address = "";
-	$guest_lim = 0;
 	$username_err  = $bname_err = $email_err = $address_err = $guest_lim_err = "";
+	$guest_lim = $_SESSION['guest_lim'];
 	$Business = new Business($_SESSION['username'], $_SESSION['bname'], $_SESSION['address'], intval($_SESSION['guest_lim']) );
- 
+	
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 	
 	// Validate guest limit, must be at least 1
-    if(intval($_POST["guest_lim"]) < 1 ){
+    if( is_numeric (trim($_POST["guest_lim"])) < 1 ){
         $guest_lim_err = "Please enter a valid guest limit (at least 1).";     
     } else{
         $guest_lim = intval($_POST["guest_lim"]);
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				//$password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 				
 				// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt2, "ssis", $address, $bname, $guest_lim, $_SESSION[username]);
+				mysqli_stmt_bind_param($stmt2, "ssss", $Business -> get_address(), $Business -> get_name(), $Business -> get_guest_lim(), $_SESSION[username]);
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt2)){
 					// Redirect to login page

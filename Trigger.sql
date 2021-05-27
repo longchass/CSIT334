@@ -193,13 +193,3 @@ FOR EACH ROW
 BEGIN
 update STATISTIC set positive_cases = (SELECT COUNT(*) from person WHERE infected = TRUE);
 END//
-
-/*Update one new case of user 'person8' */
-UPDATE person
-SET INFECTED= TRUE
-WHERE username = 'person8';
-
-/*Find people who had close contact with positive case */
-SELECT DISTINCT *
-FROM CHECKIN
-WHERE POS_CONTACT = TRUE;

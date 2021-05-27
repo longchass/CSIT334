@@ -7,7 +7,7 @@ class Business
     protected $address;
 	protected $guest_lim;
 	// Constructor
-    public function __construct(string $u, string $n, string $a, int $lim ) {
+    public function __construct(string $u, string $n, string $a, string $lim ) {
         $this->username = $u;
         $this->name     = $n;
 		$this->address  = $a;

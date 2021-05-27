@@ -38,18 +38,19 @@ session_start();
 	}
 	function business_session_info($link)
 	{
-		$username = $bname = $address = " ";
+		$username = $bname = $address = $guest_lim = " ";
 		
-		$sql = "SELECT username, bname, address FROM business WHERE username = ?";
+		$sql = "SELECT username, bname, address, guest_lim FROM business WHERE username = ?";
 		if($stmt3 = mysqli_prepare($link, $sql)){
 					mysqli_stmt_bind_param($stmt3, "s", $_SESSION["username"]);
 					mysqli_stmt_execute($stmt3);
 					mysqli_stmt_store_result($stmt3);
-					mysqli_stmt_bind_result($stmt3, $username, $bname, $address);
+					mysqli_stmt_bind_result($stmt3, $username, $bname, $address, $guest_lim);
 					mysqli_stmt_fetch($stmt3);
 					$_SESSION["username"]   = $username;
 					$_SESSION["bname"]      = $bname;
 					$_SESSION["address"]    = $address;
+					$_SESSION["guest_lim"]  = $guest_lim;
 		}
 
 
