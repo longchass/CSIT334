@@ -6,7 +6,6 @@ require 'classes/sessioncheck.php'
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
    <meta charset="UTF-8">
    <title>Welcome</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -56,7 +55,7 @@ require 'classes/sessioncheck.php'
       }
       
    </style>
-=======
+
 
     <meta charset="UTF-8" />
     <title>Welcome</title>
@@ -133,13 +132,11 @@ require 'classes/sessioncheck.php'
   });
 </script>
 
->>>>>>> d8c2bc8599a3bcf0b08eba33cb991fb5ca3aa0c6
 </head>
 
 
 
 <body>
-<<<<<<< HEAD
    <div id="header"></div>
    <h1 style="padding-top: 4%; padding-bottom: 10px;">Latest Government News</h1>
    <div class="news">
