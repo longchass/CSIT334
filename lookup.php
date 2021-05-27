@@ -26,7 +26,7 @@
 
 					echo $stmt->error;
 				}
-				
+				// Close statement
 
 			}
 			
@@ -125,6 +125,7 @@
 							$stmt->close();
 						}
 					}
+					
 				} else 
 				{
 					$sql = 'SELECT PERSON.USERNAME, FNAME, LNAME, INFECTED, VACCINE_TYPE
