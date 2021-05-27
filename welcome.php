@@ -172,6 +172,8 @@ $vaccinated_user_count  = $AstraZeneca_count + $Pfizer_count;
         Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to VaXafe.
     </h1>
 
+    <h2 style="padding-top: 4%; padding-bottom: 10px;">Latest Government News and Statistics</h2>
+
     <table width="100%">
         <tr>
             <td>
@@ -187,7 +189,7 @@ $vaccinated_user_count  = $AstraZeneca_count + $Pfizer_count;
 
 
 
-    <h1 style="padding-top: 4%; padding-bottom: 10px;">Latest Government News</h1>
+    
 
 
     <h2>NSW Health Twitter</h2>
