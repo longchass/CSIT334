@@ -99,12 +99,13 @@
 			<?php
 				if(!empty($_GET['name']) ) 
 				{
+					$likeVar = "%" . $_GET['name'] . "%";
 					$sql = "SELECT PERSON.USERNAME, FNAME, LNAME, INFECTED, VACCINE_TYPE
 							FROM person LEFT OUTER JOIN vaccine_cert
 							ON person.username = vaccine_cert.username
 							WHERE person.username like ?";
 					if($stmt = $link->prepare($sql) ) {
-						$stmt->bind_param("s",$_GET['name']);
+						$stmt->bind_param("s",$likeVar);
 						
 						if($stmt->execute() ) {
 							echo "<table width='80%' border='1' align='center'>\n";
