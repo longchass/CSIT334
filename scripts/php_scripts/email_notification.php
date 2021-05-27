@@ -1,13 +1,6 @@
 
 
 <?PHP
-	require 'config.php';
-   session_start();
-   // Check if the user is logged in, if not then redirect him to login page
-   if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
-       header("location: index.php");
-       exit;
-   }
 //-=-=- Sends an email to a SINGLE ADDRESS-=-=-=-=
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 //gets the sent email address
@@ -15,12 +8,6 @@ $text = $_POST['email'];
 
 //pases inputs correctly to python
 $command = 'python sendEmail.py ' . $text;
-
-//executes command and returns output
-$output = shell_exec($command);
-
-//output of the email script
-echo $output;
 
 /*
 //old code with no arguments, keep for reference
@@ -36,7 +23,19 @@ echo $output;
     <meta charset="UTF-8">
     <title>Sends user email</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+$(document).ready(function(){
+   
+		$("#header").load("StaffHeader.html");
+
+});
+	
+	</script>
     <style>
+	
 
 * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
 
