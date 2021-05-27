@@ -107,9 +107,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 font-family: "Open Sans", sans-serif;
                 background: #092756;
             }
-            td {
-                width: 33.3%;
-            }
+			th, td {
+				padding: 10px;
+			}
+			tr:nth-child(even) {
+				background-color:#fff;
+				color:black;
+			}
+			tr:nth-child(odd) {
+				background-color:#eef;
+				color:black;
+			}
+			th {
+				background-color: #0044cc;
+				color:white;
+			}
         </style>
 		      <script>
          $(function(){
@@ -126,10 +138,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <table width="80%" border="1" align="center">
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <tbody>
+				<tr>
+					<th>Data</th>
+					<th>Value</th>
+					<th>Action</th>
+				</tr>
                 <tr width="33.3%">
                     <td>Username</td>
                     <td><?php echo htmlspecialchars($Business -> get_username()); ?></td>
-                    <td><input type="submit" value="Change"></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Address </td>
