@@ -149,7 +149,7 @@ require 'classes/sessioncheck.php'
     </div>
 
     
-    <button onclick="runEmailNotification('xxxx@uowmail.edu.au')">Test notification</button>
+    <button onclick="runPushNotification('TEST')">Test notification</button>
     
 
 
