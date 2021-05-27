@@ -1,6 +1,13 @@
 
 
 <?PHP
+	require 'config.php';
+   session_start();
+   // Check if the user is logged in, if not then redirect him to login page
+   if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
+       header("location: index.php");
+       exit;
+   }
 //-=-=- Sends an email to a SINGLE ADDRESS-=-=-=-=
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 //gets the sent email address
@@ -90,6 +97,8 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
     </style>
 </head>
 <body>
+
+	<div id="header" ></div>
 	<div class="login" >
         <h1 style="padding-top: 25px;">Send emails</h1>
         <p>Please fill an email address.</p>
