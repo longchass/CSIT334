@@ -26,6 +26,7 @@ $command = 'python sendEmail.py ' . $text;
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="/scripts/displayNotification.js"></script>
 	<script>
 $(document).ready(function(){
    
@@ -101,7 +102,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 	<div class="login" >
         <h1 style="padding-top: 25px;">Send email</h1>
         <p>Please fill an email address.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form method="post" action="runEmailNotification()" >
             
                 
                 <input type="text" name="email" placeholder="Email">
@@ -111,6 +112,8 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
         </form>
 		
 		
+
+
     </div>
     </div>
 </body>
