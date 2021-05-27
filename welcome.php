@@ -138,6 +138,11 @@ require 'classes/sessioncheck.php'
 
 <body>
    <div id="header"></div>
+   
+   <h1 class="my-5">
+        Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.
+    </h1>
+
    <h1 style="padding-top: 4%; padding-bottom: 10px;">Latest Government News</h1>
    <div class="news">
       <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" preloader-text="Loading" data-fw-param="146675/"></script>
@@ -150,77 +155,16 @@ require 'classes/sessioncheck.php'
    </div>
 
    </div>
-=======
     <div id="header"></div>
 
-    <h1 class="my-5">
-        Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.
-    </h1>
-	<button onclick="runPushNotification('TEST')" type="button" class="btn btn-primary">subscribe to our newsletter for the latest updates on covid news</button>
-    <h1 align="left" style="padding-left: 30px;">DASHBOARD</h1>
-    <table width="90%" border="1" align="center">
-        <tbody>
-            <tr>
-                <td width="25%" align="center">
-                    <img src="https://cdn.davemorrowphotography.com/wp-content/uploads/2021/01/star-photography-39.jpg" /><br />
-                    Check-in
-                </td>
-                <td width="25%" align="center">
-                    <img src="https://cdn.davemorrowphotography.com/wp-content/uploads/2021/01/star-photography-39.jpg" /><br />
-                    Enroll
-                </td>
-                <td width="25%" align="center">
-                    <img src="https://cdn.davemorrowphotography.com/wp-content/uploads/2021/01/star-photography-39.jpg" /><br />
-                    Roll outs
-                </td>
-                <td width="25%" align="center">
-                    <img src="https://cdn.davemorrowphotography.com/wp-content/uploads/2021/01/star-photography-39.jpg" /><br />
-                    Annoucements
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br />
-    <br />
-    <div class="other-activities" style="padding-top: 20px;">
-        <h1 align="left" style="padding-left: 20px;">Otherrr information</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <h2>
-                    COVID-19 News
-                </h2>
-                <img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />
-                <p>
-                    <a class="btn" href="#">Read more »</a>
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h2>
-                    Contact government
-                </h2>
-                <img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />
-                <p>
-                    <a class="btn" href="#">View details »</a>
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h2>
-                    Support our website
-                </h2>
-                <img alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/g9a9m-MHM425BWQ9F-Full-Image_GalleryBackground-en-US-1521579412582._SX1080_.jpg" />
-                <p>
-                    <a class="btn" href="#">Donate »</a>
-                </p>
-            </div>
-        </div>
+    
+	
 
-    </div>
 
     
     
 
 
->>>>>>> d8c2bc8599a3bcf0b08eba33cb991fb5ca3aa0c6
 </body>
 
 </html>
