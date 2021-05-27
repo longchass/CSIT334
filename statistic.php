@@ -142,26 +142,6 @@ $AstraZeneca_count = $row[0];
 			<td><?php echo divideFloat((int) $positive_cases, (int)$total_user) * 100;
 				echo "%" ?></td>
 		</tr>
-
-		<tr>
-			<td>Users registered over total population</td>
-			<td><?php echo divideFloat((int) $total_use, (int)$total_population);
-				100;
-				echo "%" ?></td>
-		</tr>
-
-		<tr>
-			<td>Positive case count over total population</td>
-			<td><?php echo divideFloat((int) $positive_cases, (int)$total_population);
-				100;
-				echo "%" ?></td>
-		</tr>
-		<tr>
-			<td>Positive case count over total vaccinated</td>
-			<td><?php echo divideFloat((int) $positive_cases, (int)$total_population);
-				100;
-				echo "%" ?></td>
-		</tr>
 	</table>
 
 	

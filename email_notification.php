@@ -8,6 +8,7 @@ $text = $_POST['email'];
 
 //pases inputs correctly to python
 $command = 'python sendEmail.py ' . $text;
+shell_exec($command);
 
 /*
 //old code with no arguments, keep for reference
@@ -28,11 +29,7 @@ $command = 'python sendEmail.py ' . $text;
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="/scripts/displayNotification.js"></script>
 	<script>
-$(document).ready(function(){
-   
-		$("#header").load("html/StaffHeader.html");
 
-});
 	
 	</script>
     <style>
@@ -102,7 +99,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 	<div class="login" >
         <h1 style="padding-top: 25px;">Send email</h1>
         <p>Please fill an email address.</p>
-        <form method="post" action="runEmailNotification()" >
+        <form method="post" >
             
                 
                 <input type="text" name="email" placeholder="Email">
