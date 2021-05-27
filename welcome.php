@@ -146,11 +146,7 @@ require 'classes/sessioncheck.php'
             </div>
         </div>
 
-    </div>
-
-    
-    <button onclick="runPushNotification('TEST')">Test notification</button>
-    
+    </div>    
 
 
 </body>
