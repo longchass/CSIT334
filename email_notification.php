@@ -1,6 +1,8 @@
 
 
 <?PHP
+require 'classes/sessioncheck.php';
+require 'config.php';
 //-=-=- Sends an email to a SINGLE ADDRESS-=-=-=-=
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 //gets the sent email address
@@ -9,6 +11,7 @@ $text = $_POST['email'];
 //pases inputs correctly to python
 $command = 'python sendEmail.py ' . $text;
 shell_exec($command);
+
 
 /*
 //old code with no arguments, keep for reference
