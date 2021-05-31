@@ -1,4 +1,5 @@
 <?php
+
 require 'classes/form.php'
 ?>
 <!DOCTYPE html>
@@ -47,16 +48,6 @@ require 'classes/form.php'
                 <label>Last Name</label>
                 <input type="text" name="last_name" class="form-control <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $last_name; ?>">
                 <span class="invalid-feedback"><?php echo $last_name_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                <span class="invalid-feedback"><?php echo $email_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
-                <span class="invalid-feedback"><?php echo $address_err; ?></span>
             </div>
 			<div class="form-group">
                 <label>Username</label>

@@ -1,5 +1,5 @@
 <?php
-require 'classes/form.php'
+require 'classes/businessform.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,24 +39,19 @@ require 'classes/form.php'
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>First Name</label>
-                <input type="text" name="first_name" class="form-control <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $first_name; ?>">
-                <span class="invalid-feedback"><?php echo $first_name_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" name="last_name" class="form-control <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $last_name; ?>">
-                <span class="invalid-feedback"><?php echo $last_name_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                <label>Business Name</label>
+                <input type="text" name="bname" class="form-control <?php echo (!empty($bname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $bname; ?>">
+                <span class="invalid-feedback"><?php echo $bname_err; ?></span>
             </div>
             <div class="form-group">
                 <label>Address</label>
                 <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
                 <span class="invalid-feedback"><?php echo $address_err; ?></span>
+            </div>
+			<div class="form-group">
+                <label>Capacity</label>
+                <input type="text" name="guest_lim" class="form-control <?php echo (!empty($guest_lim_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $guest_lim; ?>">
+                <span class="invalid-feedback"><?php echo $guest_lim_err; ?></span>
             </div>
 			<div class="form-group">
                 <label>Username</label>
